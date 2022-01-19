@@ -35,11 +35,16 @@ public class ProjectileWeapon : MonoBehaviour
     [Header("Debug")]
     private bool allowInvoke = true;
 
+    private Animator weaponAnimator;
+
     private void Awake()
     {
         // Make sure magazine is full
         bulletsLeft = magazineSize;
         isReadyToShoot = true;
+
+        // Get weapon animator
+        weaponAnimator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -63,6 +68,13 @@ public class ProjectileWeapon : MonoBehaviour
         {
             isShooting = Input.GetMouseButtonDown(0);
         }
+
+        // Update shooting animation
+        if (weaponAnimator != null)
+        {
+            weaponAnimator.SetBool("isFiring", isShooting && !isReloading);
+        }
+
 
         // Check if we should reload
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize)
