@@ -8,6 +8,9 @@ public class GameManager : Singleton<GameManager>
     private Camera playerCamera;
 
     [SerializeField]
+    private Camera weaponCamera;
+
+    [SerializeField]
     private GameObject generatorPrefab;
 
     [SerializeField]
@@ -18,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     public void CameraShake(float shakeAmount)
     {
         playerCamera.GetComponent<StressReceiver>()?.InduceStress(shakeAmount);
+        weaponCamera.GetComponent<StressReceiver>()?.InduceStress(shakeAmount * 0.5f);
     }
 
     public void SpawnGenerators()

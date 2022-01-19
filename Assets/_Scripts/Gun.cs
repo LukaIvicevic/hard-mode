@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private float gracePeriod = 0.2f;
 
-    private float fireRate;
+    private float fireRate = 1;
     private float canFireTime = 0;
     private Animator animator;
 
@@ -30,13 +30,16 @@ public class Gun : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        animator.SetFloat("FireRateMultiplier", fireRateMultiplier);
-        var animations = animator.runtimeAnimatorController.animationClips;
-        foreach (var animation in animations)
+        if (animator != null)
         {
-            if (animation.name == "Recoil")
+            animator.SetFloat("FireRateMultiplier", fireRateMultiplier);
+            var animations = animator.runtimeAnimatorController.animationClips;
+            foreach (var animation in animations)
             {
-                fireRate = animation.length;
+                if (animation.name == "Recoil")
+                {
+                    fireRate = animation.length;
+                }
             }
         }
     }
@@ -53,8 +56,15 @@ public class Gun : MonoBehaviour
             bulletInstance.transform.rotation = bulletSpawner.rotation;
 
             // Handle animation
-            particleSystem.Play();
-            animator.Play("Recoil", 0, 0f);
+            if (particleSystem != null)
+            {
+                particleSystem.Play();
+            }
+
+            if (animator != null)
+            {
+                animator.Play("Recoil", 0, 0f);
+            }
 
             // Handle fire rate
             canFireTime = Time.time + fireRate - gracePeriod;
