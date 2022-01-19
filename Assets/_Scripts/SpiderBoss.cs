@@ -81,6 +81,11 @@ public class SpiderBoss : MonoBehaviour
         }
     }
 
+    public void IntroFinished()
+    {
+        ChangeState(SpiderState.Tracking);
+    }
+
     #region State
 
     private void ChangeState(SpiderState tracking)
@@ -104,7 +109,7 @@ public class SpiderBoss : MonoBehaviour
 
     private void HandleStateStarting()
     {
-        ChangeState(SpiderState.Tracking);
+        // ChangeState(SpiderState.Tracking);
     }
 
     private void HandleStateTracking()
