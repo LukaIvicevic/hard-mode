@@ -57,10 +57,18 @@ public class SpiderBoss : Enemy
     void Start()
     {
         health = maxHealth;
+        canFireTime = Time.time + fireRate;
+        ChangeState(SpiderState.Starting);
+
+        if (healthbar == null)
+        {
+            Logger.Instance.LogWarning("Healthbar not set on SpiderBoss");
+            return;
+        }
+
         healthbar.maxValue = maxHealth;
         healthbar.value = health;
-        canFireTime = Time.time + fireRate;
-        turretState = SpiderState.Starting;
+        
     }
 
     void Update()
@@ -84,6 +92,8 @@ public class SpiderBoss : Enemy
     public void IntroFinished()
     {
         ChangeState(SpiderState.Tracking);
+
+        healthbar.transform.DOLocalMoveY(475, 1).SetEase(Ease.OutExpo);
     }
 
     #region State
@@ -93,6 +103,7 @@ public class SpiderBoss : Enemy
         switch (tracking)
         {
             case SpiderState.Starting:
+                turretState = SpiderState.Starting;
                 break;
             case SpiderState.Tracking:
                 isFiring = false;
@@ -109,7 +120,7 @@ public class SpiderBoss : Enemy
 
     private void HandleStateStarting()
     {
-        // ChangeState(SpiderState.Tracking);
+
     }
 
     private void HandleStateTracking()

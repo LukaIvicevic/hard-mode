@@ -20,6 +20,8 @@ public class Generator : Enemy
 
     private float health;
 
+    private float targetHealthbarX = 120f;
+
     private TweenerCore<Vector3, Vector3, VectorOptions> tween;
 
     private void Start()
@@ -70,12 +72,13 @@ public class Generator : Enemy
         if (Physics.Raycast(transform.position, -Vector3.up, out var hit))
         {
             // Fall to the ground
-            tween = transform.DOMove(hit.point, fallDuration).SetEase(Ease.InExpo).OnComplete(CameraShake);
+            tween = transform.DOMove(hit.point, fallDuration).SetEase(Ease.InExpo).OnComplete(FallComplete);
         }
     }
 
-    private void CameraShake()
+    private void FallComplete()
     {
+        healthbar.transform.DOMoveX(targetHealthbarX, 1).SetEase(Ease.OutExpo);
         GameManager.Instance.CameraShake(0.4f);
     }
 }
