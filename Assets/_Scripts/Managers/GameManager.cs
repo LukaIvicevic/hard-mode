@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public void StartFight()
     {
         UnitManager.Instance.SpawnGenerators();
+        UnitManager.Instance.SpawnBoss();
     }
 
     public void CameraShake(float shakeAmount)
@@ -20,6 +21,4 @@ public class GameManager : Singleton<GameManager>
         playerCamera.GetComponent<StressReceiver>()?.InduceStress(shakeAmount);
         weaponCamera.GetComponent<StressReceiver>()?.InduceStress(shakeAmount * 0.2f);
     }
-
-
 }

@@ -5,12 +5,32 @@ using UnityEngine;
 public class UnitManager : Singleton<UnitManager>
 {
     [SerializeField]
+    private GameObject bossStandObject;
+
+    [SerializeField]
+    private GameObject spiderBossObject;
+
+    [SerializeField]
     private GameObject generatorPrefab;
 
     [SerializeField]
     private Transform[] generatorSpawnPositions;
 
     private GameObject[] generators = new GameObject[4];
+
+    private Animator bossStandAnimator;
+
+    private float bossSpawnDelay = 4f;
+
+    private void Start()
+    {
+        if (bossStandObject == null)
+        {
+            Debug.LogWarning("BossStandObject not set on UnitManager");
+        }
+
+        bossStandAnimator = bossStandObject.GetComponent<Animator>();
+    }
 
     public void SpawnGenerators()
     {
@@ -29,6 +49,31 @@ public class UnitManager : Singleton<UnitManager>
 
             StartCoroutine(SpawnGenerator(i));
         }
+    }
+
+    public void SpawnBoss()
+    {
+        if (spiderBossObject == null)
+        {
+            Debug.LogWarning("SpiderBossObject not set on UnitManager");
+            return;
+        }
+
+        if (bossStandAnimator == null)
+        {
+            Debug.LogWarning("BossStandAnimator not set on UnitManager");
+            return;
+        }
+
+
+        Invoke("BossIntro", bossSpawnDelay);
+    }
+
+    private void BossIntro()
+    {
+        // Activate boss game object and play the intro animation
+        spiderBossObject.SetActive(true);
+        bossStandAnimator.SetTrigger("Intro");
     }
 
     private IEnumerator SpawnGenerator(int index)
