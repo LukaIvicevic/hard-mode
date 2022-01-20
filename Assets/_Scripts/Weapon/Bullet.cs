@@ -35,12 +35,11 @@ public class Bullet : MonoBehaviour
         }
 
         var enemy = other.GetComponent<Enemy>();
-        if (enemy == null)
+        if (enemy != null)
         {
-            return;
+            enemy.TakeDamage(damage);
         }
 
-        enemy.TakeDamage(damage);
         Destroy(gameObject);
     }
 }

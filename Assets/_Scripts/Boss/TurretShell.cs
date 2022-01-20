@@ -24,9 +24,10 @@ public class TurretShell : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var isCollisionLayer = other.gameObject.layer == ignoreCollisionLayer;
+        var isIgnoreCollisionLayer = other.gameObject.layer == ignoreCollisionLayer;
         var isTurretBoss = other.gameObject.tag == "TurretBoss";
-        var ignoreCollision = isCollisionLayer || isTurretBoss;
+        var isForceField = other.gameObject.tag == "ForceField";
+        var ignoreCollision = isIgnoreCollisionLayer || isTurretBoss || isForceField;
         if (ignoreCollision)
         {
             return;

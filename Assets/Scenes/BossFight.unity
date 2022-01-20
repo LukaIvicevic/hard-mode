@@ -8879,7 +8879,7 @@ PrefabInstance:
     - target: {fileID: 1192318040085735458, guid: 93f9271e4390c3d48b92e7a9bec48f12,
         type: 3}
       propertyPath: m_Name
-      value: SpawnGenerators
+      value: StartFight
       objectReference: {fileID: 0}
     - target: {fileID: 1192318040085735469, guid: 93f9271e4390c3d48b92e7a9bec48f12,
         type: 3}
@@ -9005,6 +9005,11 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 746824143}
+    - target: {fileID: 4900998896228045109, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5461175091916694014, guid: 114849b77a013f4468f5bc64af9dcc95,
         type: 3}
       propertyPath: m_IsActive

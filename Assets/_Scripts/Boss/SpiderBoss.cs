@@ -7,6 +7,27 @@ using UnityEngine.UI;
 
 public class SpiderBoss : Enemy
 {
+    [Header("Stats")]
+    [SerializeField]
+    private float maxHealth = 1000f;
+
+    [SerializeField]
+    private float rotationSpeed = 5f;
+
+    [SerializeField]
+    private float fireRate = 1f;
+
+    [SerializeField]
+    private float fireDelay = 1f;
+
+    [Header("Force Field")]
+    [SerializeField]
+    private Vector3 forceFieldScale = new Vector3(50, 30, 65);
+    [SerializeField]
+    private float forceFieldAnimationDuration = 2f;
+    [SerializeField]
+    private Ease forceFieldAnimationEase = Ease.OutExpo;
+
     [Header("Setup")]
     [SerializeField]
     private Transform target;
@@ -24,28 +45,24 @@ public class SpiderBoss : Enemy
     private GameObject shellPrefab;
 
     [SerializeField]
+    private GameObject forceField;
+
+    [SerializeField]
     private Slider healthbar;
 
-    [Header("Stats")]
-    [SerializeField]
-    private float maxHealth = 1000f;
 
-    [SerializeField]
-    private float rotationSpeed = 5f;
 
-    [SerializeField]
-    private float fireRate = 1f;
-
-    [SerializeField]
-    private float fireDelay = 1f;
+    private SpiderState turretState;
 
     private float canFireTime = 0f;
 
-    private float health;
-
     private bool isFiring = false;
 
-    private SpiderState turretState;
+    private bool canBeDamaged = false;
+
+    private float health;
+
+
 
     private enum SpiderState
     {
@@ -54,7 +71,7 @@ public class SpiderBoss : Enemy
         Firing
     }
 
-    void Start()
+    private void Start()
     {
         health = maxHealth;
         canFireTime = Time.time + fireRate;
@@ -71,7 +88,7 @@ public class SpiderBoss : Enemy
         
     }
 
-    void Update()
+    private void Update()
     {
         switch (turretState)
         {
@@ -91,10 +108,55 @@ public class SpiderBoss : Enemy
 
     public void IntroFinished()
     {
+        // Start tracking
         ChangeState(SpiderState.Tracking);
 
+        // Activate force field
+        ActivateForceField();
+
+        // Ease in healthbar
         healthbar.transform.DOLocalMoveY(475, 1).SetEase(Ease.OutExpo);
+
     }
+
+    #region Force Field
+
+    private void ActivateForceField()
+    {
+        if (forceField == null)
+        {
+            Logger.Instance.LogWarning("ForceField not set on SpiderBoss");
+            return;
+        }
+
+        canBeDamaged = false;
+        forceField.SetActive(true);
+        forceField.transform.localScale = Vector3.zero;
+        forceField.transform.rotation = transform.rotation;
+        forceField.transform.DOScale(forceFieldScale, forceFieldAnimationDuration).SetEase(forceFieldAnimationEase);
+    }
+
+    private void DeactivateForceField()
+    {
+        if (forceField == null)
+        {
+            Logger.Instance.LogWarning("ForceField not set on SpiderBoss");
+            return;
+        }
+
+        forceField.SetActive(false);
+        forceField.transform.localScale = Vector3.zero;
+        forceField.transform.rotation = transform.rotation;
+        forceField.transform.DOScale(Vector3.zero, forceFieldAnimationDuration).SetEase(forceFieldAnimationEase).OnComplete(SetForceFieldInactive);
+    }
+
+    private void SetForceFieldInactive()
+    {
+        forceField.SetActive(false);
+        canBeDamaged = true;
+    }
+
+    #endregion
 
     #region State
 
@@ -160,6 +222,11 @@ public class SpiderBoss : Enemy
 
     public override void TakeDamage(float damage)
     {
+        if (!canBeDamaged)
+        {
+            return;
+        }
+
         health -= damage;
         healthbar.value = health;
 

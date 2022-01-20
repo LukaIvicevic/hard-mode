@@ -6,6 +6,6 @@ public class Spawner : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        UnitManager.Instance.SpawnGenerators();
+        GameManager.Instance.StartFight();
     }
 }
