@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 966200920288909241}
   m_Layer: 0
   m_Name: Generator
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,8 +353,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3518428740479735766}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 4}
-  m_Center: {x: -0.5, y: 2.5, z: -2}
+  m_Size: {x: 10.4632225, y: 10.594284, z: 8.580192}
+  m_Center: {x: -1.1962214, y: 5.297142, z: -3.994516}
