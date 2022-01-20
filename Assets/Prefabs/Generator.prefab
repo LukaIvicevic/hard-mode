@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3518428739660195230}
   - component: {fileID: 3518428739660195217}
   - component: {fileID: 3518428739660195216}
-  - component: {fileID: 396362055644102480}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -282,7 +281,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -299,19 +298,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3518428739660195221}
   m_Mesh: {fileID: 0}
---- !u!65 &396362055644102480
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3518428739660195221}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 4}
-  m_Center: {x: -0.5, y: 2.5, z: -2}
 --- !u!1 &3518428740479735766
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,9 +308,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3518428740479735767}
   - component: {fileID: 3518428740479735764}
+  - component: {fileID: 966200920288909241}
   m_Layer: 0
   m_Name: Generator
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,4 +343,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dc293356dbd794db47e27ca85b8c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  maxHealth: 500
+  fallDuration: 2
+--- !u!65 &966200920288909241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518428740479735766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 4}
+  m_Center: {x: -0.5, y: 2.5, z: -2}

@@ -143,13 +143,13 @@ public class TurretBoss : MonoBehaviour
 
     public void TakeDamage(int value)
     {
-        Debug.Log("Hit for " + value);
+        Logger.Instance.Log("Hit for " + value);
         health -= value;
         healthbar.value = health;
 
         if (health <= 0)
         {
-            Debug.Log("Died");
+            Logger.Instance.Log("Died");
             Destroy(this.gameObject);
         }
     }

@@ -12,14 +12,14 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         Instance = null;
         Destroy(gameObject);
     }
+}
 
-    public abstract class SingletonPersistent<T> : Singleton<T> where T : MonoBehaviour
+public abstract class SingletonPersistent<T> : Singleton<T> where T : MonoBehaviour
+{
+    protected override void Awake()
     {
-        protected override void Awake()
-        {
-            if (Instance != null) Destroy(gameObject);
-            DontDestroyOnLoad(gameObject);
-            base.Awake();
-        }
+        if (Instance != null) Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+        base.Awake();
     }
 }

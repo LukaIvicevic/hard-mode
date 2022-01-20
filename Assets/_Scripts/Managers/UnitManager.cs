@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitManager : Singleton<UnitManager>
 {
@@ -16,6 +17,9 @@ public class UnitManager : Singleton<UnitManager>
     [SerializeField]
     private Transform[] generatorSpawnPositions;
 
+    [SerializeField]
+    private Slider[] generatorHealthbars = new Slider[4];
+
     private GameObject[] generators = new GameObject[4];
 
     private Animator bossStandAnimator;
@@ -26,7 +30,7 @@ public class UnitManager : Singleton<UnitManager>
     {
         if (bossStandObject == null)
         {
-            Debug.LogWarning("BossStandObject not set on UnitManager");
+            Logger.Instance.LogWarning("BossStandObject not set on UnitManager");
         }
 
         bossStandAnimator = bossStandObject.GetComponent<Animator>();
@@ -36,7 +40,7 @@ public class UnitManager : Singleton<UnitManager>
     {
         if (generatorSpawnPositions == null)
         {
-            Debug.LogWarning($"{nameof(SpawnGenerators)} - No generator spawn positions set");
+            Logger.Instance.LogWarning($"{nameof(SpawnGenerators)} - No generator spawn positions set");
             return;
         }
 
@@ -55,13 +59,13 @@ public class UnitManager : Singleton<UnitManager>
     {
         if (spiderBossObject == null)
         {
-            Debug.LogWarning("SpiderBossObject not set on UnitManager");
+            Logger.Instance.LogWarning("SpiderBossObject not set on UnitManager");
             return;
         }
 
         if (bossStandAnimator == null)
         {
-            Debug.LogWarning("BossStandAnimator not set on UnitManager");
+            Logger.Instance.LogWarning("BossStandAnimator not set on UnitManager");
             return;
         }
 
@@ -78,10 +82,22 @@ public class UnitManager : Singleton<UnitManager>
 
     private IEnumerator SpawnGenerator(int index)
     {
+        if (generatorSpawnPositions[index] == null)
+        {
+            Logger.Instance.LogWarning($"GeneratorSpawnPosition {index} not set on UnitManager");
+        }
+
         var delay = index * 0.5f;
         yield return new WaitForSeconds(delay);
 
         var position = generatorSpawnPositions[index];
         generators[index] = Instantiate(generatorPrefab, position);
+
+        if (generatorHealthbars[index] == null)
+        {
+            Logger.Instance.LogWarning($"GeneratorHealthbar {index} not set on UnitManager");
+        }
+
+        generators[index].GetComponent<Generator>().SetHealthbar(generatorHealthbars[index]);
     }
 }

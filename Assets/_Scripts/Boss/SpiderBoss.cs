@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpiderBoss : MonoBehaviour
+public class SpiderBoss : Enemy
 {
     [Header("Setup")]
     [SerializeField]
@@ -147,16 +147,15 @@ public class SpiderBoss : MonoBehaviour
 
     #endregion
 
-    public void TakeDamage(int value)
+    public override void TakeDamage(float damage)
     {
-        Debug.Log("Hit for " + value);
-        health -= value;
+        health -= damage;
         healthbar.value = health;
 
         if (health <= 0)
         {
-            Debug.Log("Died");
-            Destroy(this.gameObject);
+            Logger.Instance.Log("Died");
+            Destroy(gameObject);
         }
     }
 

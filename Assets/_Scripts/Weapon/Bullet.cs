@@ -34,12 +34,13 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        var turretBoss = other.GetComponent<SpiderBoss>();
-        if (turretBoss != null)
+        var enemy = other.GetComponent<Enemy>();
+        if (enemy == null)
         {
-            turretBoss.TakeDamage(damage);
+            return;
         }
 
+        enemy.TakeDamage(damage);
         Destroy(gameObject);
     }
 }
