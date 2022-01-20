@@ -18,6 +18,9 @@ public class UnitManager : Singleton<UnitManager>
     private GameObject generatorPrefab;
 
     [SerializeField]
+    private GameObject killBallPrefab;
+
+    [SerializeField]
     private Transform[] generatorSpawnPositions;
 
     [SerializeField]
@@ -78,9 +81,22 @@ public class UnitManager : Singleton<UnitManager>
 
     public void GeneratorDestroyed(int id)
     {
+        SpawnKillBall(generators[id].transform.position);
+
         generators[id] = null;
 
         CheckGenerators();
+    }
+
+    private void SpawnKillBall(Vector3 position)
+    {
+        if (killBallPrefab == null)
+        {
+            Logger.Instance.LogWarning("KillBallPrefab is not set on UnitManager");
+            return;
+        }
+
+        Instantiate(killBallPrefab, position, Quaternion.identity);
     }
 
     private void CheckGenerators()
