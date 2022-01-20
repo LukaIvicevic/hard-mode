@@ -22,6 +22,8 @@ public class Generator : Enemy
 
     private float targetHealthbarX = 120f;
 
+    private int id;
+
     private TweenerCore<Vector3, Vector3, VectorOptions> tween;
 
     private void Start()
@@ -37,14 +39,20 @@ public class Generator : Enemy
 
     public override void TakeDamage(float damage)
     {
+        // Reduce health
         health -= damage;
         healthbar.value = health;
 
+        // Handle destroy
         if (health <= 0)
         {
-            Logger.Instance.Log("Died");
-            Destroy(gameObject);
+            Destroyed();
         }
+    }
+
+    public void SetId(int value)
+    {
+        id = value;
     }
 
     private void SetupHealth()
@@ -66,6 +74,11 @@ public class Generator : Enemy
         tween.Kill();
     }
 
+    private void Destroyed()
+    {
+        UnitManager.Instance.GeneratorDestroyed(id);
+        Destroy(gameObject);
+    }
 
     private void Fall()
     {

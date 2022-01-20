@@ -149,7 +149,6 @@ public class TurretBoss : MonoBehaviour
 
         if (health <= 0)
         {
-            Logger.Instance.Log("Died");
             Destroy(this.gameObject);
         }
     }

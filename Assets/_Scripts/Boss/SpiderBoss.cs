@@ -121,7 +121,7 @@ public class SpiderBoss : Enemy
 
     #region Force Field
 
-    private void ActivateForceField()
+    public void ActivateForceField()
     {
         if (forceField == null)
         {
@@ -136,7 +136,7 @@ public class SpiderBoss : Enemy
         forceField.transform.DOScale(forceFieldScale, forceFieldAnimationDuration).SetEase(forceFieldAnimationEase);
     }
 
-    private void DeactivateForceField()
+    public void DeactivateForceField()
     {
         if (forceField == null)
         {
@@ -232,7 +232,6 @@ public class SpiderBoss : Enemy
 
         if (health <= 0)
         {
-            Logger.Instance.Log("Died");
             Destroy(gameObject);
         }
     }

@@ -12,6 +12,9 @@ public class UnitManager : Singleton<UnitManager>
     private GameObject spiderBossObject;
 
     [SerializeField]
+    private float forceFieldDestroyedDuration = 10f;
+
+    [SerializeField]
     private GameObject generatorPrefab;
 
     [SerializeField]
@@ -51,7 +54,7 @@ public class UnitManager : Singleton<UnitManager>
                 Destroy(generators[i]);
             }
 
-            StartCoroutine(SpawnGenerator(i));
+            if (i == 0) StartCoroutine(SpawnGenerator(i));
         }
     }
 
@@ -73,6 +76,34 @@ public class UnitManager : Singleton<UnitManager>
         Invoke("BossIntro", bossSpawnDelay);
     }
 
+    public void GeneratorDestroyed(int id)
+    {
+        generators[id] = null;
+
+        CheckGenerators();
+    }
+
+    private void CheckGenerators()
+    {
+        // If all generators are dead then bring down the force field
+        foreach (var item in generators)
+        {
+            if (item != null) return;
+        }
+
+        spiderBossObject.GetComponent<SpiderBoss>().DeactivateForceField();
+        Invoke("ActivateForceField", forceFieldDestroyedDuration);
+    }
+
+    private void ActivateForceField()
+    {
+        // The boss might have already been defeated so we can just return to avoid an exception
+        if (spiderBossObject == null) return;
+
+        SpawnGenerators();
+        spiderBossObject.GetComponent<SpiderBoss>().ActivateForceField();
+    }
+
     private void BossIntro()
     {
         // Activate boss game object and play the intro animation
@@ -87,17 +118,23 @@ public class UnitManager : Singleton<UnitManager>
             Logger.Instance.LogWarning($"GeneratorSpawnPosition {index} not set on UnitManager");
         }
 
+        // Wait before spawning
         var delay = index * 0.5f;
         yield return new WaitForSeconds(delay);
 
+        // Spawn generator
         var position = generatorSpawnPositions[index];
         generators[index] = Instantiate(generatorPrefab, position);
+        
+        // Set the id
+        var generator = generators[index].GetComponent<Generator>();
+        generator.SetId(index);
 
+        // Setup healthbar
         if (generatorHealthbars[index] == null)
         {
             Logger.Instance.LogWarning($"GeneratorHealthbar {index} not set on UnitManager");
         }
-
-        generators[index].GetComponent<Generator>().SetHealthbar(generatorHealthbars[index]);
+        generator.SetHealthbar(generatorHealthbars[index]);
     }
 }
