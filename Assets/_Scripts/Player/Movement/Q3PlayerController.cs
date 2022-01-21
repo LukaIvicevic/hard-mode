@@ -58,6 +58,8 @@ namespace Q3Movement
         private Transform m_Tran;
         private Transform m_CamTran;
 
+        public float launch = 0;
+
         private void Start()
         {
             m_Tran = transform;
@@ -72,8 +74,28 @@ namespace Q3Movement
 
         private void Update()
         {
+            if (launch > 0)
+            {
+                m_PlayerVelocity = new Vector3(m_PlayerVelocity.x, launch, m_PlayerVelocity.z);
+                launch = 0;
+            }
+
+            //if (launch > 99.9)
+            //{
+            //    //m_Character.Move(m_PlayerVelocity * Time.deltaTime);
+            //    m_PlayerVelocity = transform.up.normalized * launch;
+            //    m_Character.Move(m_PlayerVelocity * Time.deltaTime);
+            //    launch -= m_AirSettings.Deceleration * Time.deltaTime;
+            //    print("launching " + launch);
+            //}
+            //else
+            //{
+            //    launch = 0;
+            //    print("not launching");
+            //}
+
             m_MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            m_MouseLook.UpdateCursorLock();    
+            m_MouseLook.UpdateCursorLock();
             QueueJump();
 
             // Set movement state.
