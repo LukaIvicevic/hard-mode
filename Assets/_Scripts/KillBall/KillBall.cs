@@ -10,6 +10,7 @@ public class KillBall : MonoBehaviour
     [SerializeField]
     private float speed = 10;
 
+    private SphereCollider sphereCollider;
 
     private enum KillBallState
     {
@@ -18,17 +19,13 @@ public class KillBall : MonoBehaviour
         Move
     }
 
-    // Start is called before the first frame update
     void Start()
     {
+        sphereCollider = GetComponent<SphereCollider>();
         IntroAnimation();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    void Update() { }
 
     private void IntroAnimation()
     {
@@ -81,12 +78,13 @@ public class KillBall : MonoBehaviour
     private void HandleMoveState()
     {
         // Raycast in the position we are facing
-        if (Physics.Raycast(transform.position, transform.forward, out var hit))
+        if (Physics.SphereCast(sphereCollider.transform.position, sphereCollider.radius, transform.forward, out var hit))
         {
             // Go to the target position
-            var targetPosition = hit.point.normalized * (hit.point.magnitude - 15);
+            var targetPosition = hit.point.normalized * (hit.point.magnitude - (sphereCollider.radius * 2));
             transform.DOMove(targetPosition, speed).SetSpeedBased(true).OnComplete(OnMoveComplete);
-        } else
+        }
+        else
         {
             // If nothing was hit then aim again
             ChangeState(KillBallState.Aim);
