@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class KillBall : MonoBehaviour
 {
-    private KillBallState killBallState = KillBallState.Intro;
+    [SerializeField]
+    private float aimDuration = 1;
+    [SerializeField]
+    private float speed = 10;
+
 
     private enum KillBallState
     {
@@ -23,8 +27,8 @@ public class KillBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
+
 
     private void IntroAnimation()
     {
@@ -50,11 +54,47 @@ public class KillBall : MonoBehaviour
             case KillBallState.Intro:
                 break;
             case KillBallState.Aim:
+                HandleAimState();
                 break;
             case KillBallState.Move:
+                HandleMoveState();
                 break;
             default:
                 break;
         }
+    }
+
+    private void HandleAimState()
+    {
+        // Rotate in a random direction on the Y axis
+        var targetRotation = Random.rotation;
+        targetRotation.x = transform.rotation.x;
+        targetRotation.z = transform.rotation.z;
+        transform.DORotateQuaternion(targetRotation, aimDuration).SetEase(Ease.InOutExpo).OnComplete(OnAimRotateComplete);
+    }
+
+    private void OnAimRotateComplete()
+    {
+        ChangeState(KillBallState.Move);
+    }
+
+    private void HandleMoveState()
+    {
+        // Raycast in the position we are facing
+        if (Physics.Raycast(transform.position, transform.forward, out var hit))
+        {
+            // Go to the target position
+            var targetPosition = hit.point.normalized * (hit.point.magnitude - 15);
+            transform.DOMove(targetPosition, speed).SetSpeedBased(true).OnComplete(OnMoveComplete);
+        } else
+        {
+            // If nothing was hit then aim again
+            ChangeState(KillBallState.Aim);
+        }
+    }
+
+    private void OnMoveComplete()
+    {
+        ChangeState(KillBallState.Aim);
     }
 }

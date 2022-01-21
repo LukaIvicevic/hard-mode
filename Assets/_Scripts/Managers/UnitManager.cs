@@ -57,7 +57,7 @@ public class UnitManager : Singleton<UnitManager>
                 Destroy(generators[i]);
             }
 
-            if (i == 0) StartCoroutine(SpawnGenerator(i));
+            StartCoroutine(SpawnGenerator(i));
         }
     }
 
@@ -123,7 +123,7 @@ public class UnitManager : Singleton<UnitManager>
     private void BossIntro()
     {
         // Activate boss game object and play the intro animation
-        spiderBossObject.SetActive(true);
+        // spiderBossObject.SetActive(true);
         bossStandAnimator.SetTrigger("Intro");
     }
 

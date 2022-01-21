@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9083579807541118153}
   - component: {fileID: 4070254080700959003}
   - component: {fileID: 8436902798450402306}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KillBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3020386725158490843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 2}
+  m_LocalPosition: {x: 0, y: 3, z: 2}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 3091904587355583524}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2567754835776616073}
   - component: {fileID: 1944215584830283574}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,9 +187,9 @@ GameObject:
   - component: {fileID: 4629256618344037119}
   - component: {fileID: 7531982393686929795}
   - component: {fileID: 9045600805728787894}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KillBall
-  m_TagString: Untagged
+  m_TagString: KillBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,7 +221,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.51
-  m_Center: {x: 0, y: 0, z: 2}
+  m_Center: {x: 0, y: 3, z: 2}
 --- !u!114 &9045600805728787894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +234,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4221adf4b6abfa94d8b2e788f4738054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killBallIgnoreLayer:
+    serializedVersion: 2
+    m_Bits: 132
+  aimDuration: 1
+  speed: 10
 --- !u!1 &7784869723486606067
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +250,7 @@ GameObject:
   - component: {fileID: 3091904587355583524}
   - component: {fileID: 1718964103097892860}
   - component: {fileID: 7313263517585456435}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: InnerSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

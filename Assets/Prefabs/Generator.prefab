@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dc293356dbd794db47e27ca85b8c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
-  fallDuration: 2
+  maxHealth: 10
+  fallDuration: 0.5
 --- !u!65 &966200920288909241
 BoxCollider:
   m_ObjectHideFlags: 0
