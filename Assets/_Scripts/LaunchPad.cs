@@ -14,6 +14,6 @@ public class LaunchPad : MonoBehaviour
         print("player");
 
         var controller = other.gameObject.GetComponent<Q3Movement.Q3PlayerController>();
-        controller.launch = 20;
+        controller.Launch(Vector3.up, 20);
     }
 }
