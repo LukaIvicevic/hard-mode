@@ -45,6 +45,32 @@ public class KillFloor : MonoBehaviour
         }
     }
 
+    public void Detonate()
+    {
+        var tiles = new List<KillFloorTile>();
+        var pattern = (TilePattern)UnityEngine.Random.Range(0, 4);
+        switch (pattern)
+        {
+            case TilePattern.EveryOther:
+                tiles = GetEveryOtherTile();
+                break;
+            case TilePattern.Cross:
+                // TODO
+                break;
+            case TilePattern.TargetPlayerCross:
+                // TODO
+                break;
+            case TilePattern.TargetPlayerDiagonal:
+                // TODO
+                break;
+            default:
+                GetEveryOtherTile();
+                break;
+        }
+
+        Detonate(tiles);
+    }
+
     private void Detonate(IEnumerable<KillFloorTile> tiles)
     {
         foreach (var tile in tiles)
@@ -104,6 +130,14 @@ public class KillFloor : MonoBehaviour
         }
 
         return selectedTiles;
+    }
+
+    private enum TilePattern
+    {
+        EveryOther,
+        Cross,
+        TargetPlayerCross,
+        TargetPlayerDiagonal,
     }
 
     [Serializable]
