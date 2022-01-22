@@ -61,10 +61,13 @@ namespace Q3Movement
         private float launchPadForce = 0;
         private Vector3 launchPadDirection = Vector3.up;
 
+        private Animator weaponAnimator;
+
         private void Start()
         {
             m_Tran = transform;
             m_Character = GetComponent<CharacterController>();
+            weaponAnimator = GetComponentInChildren<Animator>();
 
             if (!m_Camera)
                 m_Camera = Camera.main;
@@ -90,6 +93,9 @@ namespace Q3Movement
             {
                 AirMove();
             }
+
+            // Set animation state.
+            weaponAnimator.SetBool("isGrounded", m_Character.isGrounded);
 
             // Rotate the character and camera.
             m_MouseLook.LookRotation(m_Tran, m_CamTran);
@@ -248,6 +254,12 @@ namespace Q3Movement
             {
                 m_PlayerVelocity.y = m_JumpForce;
                 m_JumpQueued = false;
+
+                // Play jump animation if we are not firing or reloading
+                if (!weaponAnimator.GetBool("isReloading") && !weaponAnimator.GetBool("isFiring"))
+                {
+                    weaponAnimator.SetTrigger("jump");
+                }
             }
         }
 

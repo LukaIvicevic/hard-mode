@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7630137421034655344}
   - component: {fileID: 7378123273553921008}
   - component: {fileID: 4556409288258072042}
+  - component: {fileID: 2325381712072916972}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -73,6 +74,25 @@ MonoBehaviour:
   magazineSize: 20
   bulletsPerTap: 1
   allowButtonHold: 1
+--- !u!95 &2325381712072916972
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040767218986253631}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac1a2bf7fda17fd41a2e9fd1e156fa49, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2249345654070779742
 GameObject:
   m_ObjectHideFlags: 0
