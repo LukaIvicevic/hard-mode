@@ -52,8 +52,10 @@ public class GameManager : Singleton<GameManager>
         return killBallCastStart;
     }
 
-    public void PlayerHitKillFloorTile()
+    public void PlayerHitKillFloorTile(GameObject player)
     {
+        // Temp
+        player.transform.position = killBallCastStart.position;
         print("You died");
     }
 }

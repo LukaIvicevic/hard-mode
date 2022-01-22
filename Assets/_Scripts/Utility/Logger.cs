@@ -7,6 +7,9 @@ public class Logger : Singleton<Logger>
     [SerializeField]
     private bool debug = true;
 
+    [SerializeField]
+    private bool rayDebug = true;
+
     public void Log(string value)
     {
         if (debug)
@@ -28,6 +31,14 @@ public class Logger : Singleton<Logger>
         if (debug)
         {
             Debug.LogError(value);
+        }
+    }
+
+    public void DrawRay(Vector3 start, Vector3 direction, Color color, float duration)
+    {
+        if (rayDebug)
+        {
+            Debug.DrawRay(start, direction, color, duration);
         }
     }
 }

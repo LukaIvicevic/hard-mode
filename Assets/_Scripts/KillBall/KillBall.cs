@@ -80,12 +80,9 @@ public class KillBall : MonoBehaviour
             var targetPosition = hit.point.normalized * (hit.point.magnitude - (sphereCollider.radius * 2));
 
             // Debug
-            hitPosition = hit.point;
-            castRadius = sphereCollider.radius;
-            Debug.DrawRay(castStart.position, castDirection * 50, Color.red, 5);
+            Logger.Instance.DrawRay(castStart.position, castDirection * 50, Color.red, 5);
 
             nextMovePosition = targetPosition;
-            //transform.DOMove(targetPosition, speed).SetSpeedBased(true).OnComplete(OnMoveComplete);
         }
         else
         {
@@ -95,9 +92,9 @@ public class KillBall : MonoBehaviour
 
 
         // Look at next position
-        transform.LookAt(nextMovePosition);
-        OnAimRotateComplete();
-        // transform.DORotateQuaternion(targetRotation, aimDuration).SetEase(Ease.InOutExpo).OnComplete(OnAimRotateComplete);
+        var lookAtDirection = nextMovePosition - transform.position;
+        var lookAtRotation = Quaternion.LookRotation(lookAtDirection);
+        transform.DORotateQuaternion(lookAtRotation, aimDuration).SetEase(Ease.InOutExpo).OnComplete(OnAimRotateComplete);
     }
 
     private void OnAimRotateComplete()
@@ -105,37 +102,9 @@ public class KillBall : MonoBehaviour
         ChangeState(KillBallState.Move);
     }
 
-    private Vector3 hitPosition = Vector3.zero;
-    private float castRadius = 1;
-
     private void HandleMoveState()
     {
         transform.DOMove(nextMovePosition, speed).SetSpeedBased(true).OnComplete(OnMoveComplete);
-
-        //// Raycast in the position we are facing
-        //if (Physics.SphereCast(castStart, sphereCollider.radius, sphereCollider.transform.forward, out var hit))
-        //{
-        //    // Go to the target position
-        //    var targetPosition = hit.point.normalized * (hit.point.magnitude - (sphereCollider.radius * 2));
-
-        //    // Debug
-        //    hitPosition = hit.point;
-        //    castRadius = sphereCollider.radius;
-        //    Debug.DrawRay(castStart, sphereCollider.transform.forward * 50, Color.red, 5);
-
-        //    transform.DOMove(targetPosition, speed).SetSpeedBased(true).OnComplete(OnMoveComplete);
-        //}
-        //else
-        //{
-        //    // If nothing was hit then aim again
-        //    ChangeState(KillBallState.Aim);
-        //}
-    }
-
-    private void OnDrawGizmos()
-    {
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawSphere(hitPosition, castRadius);
     }
 
     private void OnMoveComplete()
