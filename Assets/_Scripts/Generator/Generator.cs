@@ -6,19 +6,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Generator : Enemy
+public class Generator : MonoBehaviour
 {
-    [Header("Stats")]
     [SerializeField]
-    private float maxHealth = 1000f;
+    private GeneratorEngine engine1;
+
+    [SerializeField]
+    private GeneratorEngine engine2;
 
     [Header("Fall")]
     [SerializeField]
     private float fallDuration = 2f;
 
     private Slider healthbar;
-
-    private float health;
 
     private float targetHealthbarX = 120f;
 
@@ -34,20 +34,7 @@ public class Generator : Enemy
     public void SetHealthbar(Slider hb)
     {
         healthbar = hb;
-        SetupHealth();
-    }
-
-    public override void TakeDamage(float damage)
-    {
-        // Reduce health
-        health -= damage;
-        healthbar.value = health;
-
-        // Handle destroy
-        if (health <= 0)
-        {
-            Destroyed();
-        }
+        SetupHealthBar();
     }
 
     public void SetId(int value)
@@ -55,18 +42,28 @@ public class Generator : Enemy
         id = value;
     }
 
-    private void SetupHealth()
+    public void OnEngineTakeDamage()
     {
-        health = maxHealth;
+        // Update healthbar
+        healthbar.value = engine1.GetHealth() + engine2.GetHealth();
 
+        // Handle destroy
+        if (engine1.isDestroyed && engine2.isDestroyed)
+        {
+            Destroyed();
+        }
+    }
+
+    private void SetupHealthBar()
+    {
         if (healthbar == null)
         {
             Logger.Instance.LogWarning("HealthBar not set on Generator");
             return;
         }
 
-        healthbar.maxValue = maxHealth;
-        healthbar.value = health;
+        healthbar.maxValue = engine1.GetHealth() + engine2.GetHealth();
+        healthbar.value = healthbar.maxValue;
     }
 
     private void OnDestroy()

@@ -14,6 +14,10 @@ public class KillBall : MonoBehaviour
     private Transform castStart;
     private Vector3 castDirection;
     private Vector3 nextMovePosition;
+    private bool isMoving = false;
+
+    [SerializeField]
+    private LineRenderer lineRenderer;
 
     private enum KillBallState
     {
@@ -25,11 +29,26 @@ public class KillBall : MonoBehaviour
     void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
+        lineRenderer = GetComponent<LineRenderer>();
         castStart = GameManager.Instance.GetKillBallCastStart();
         IntroAnimation();
     }
 
-    void Update() { }
+    void Update() {
+        if (isMoving)
+        {
+            DrawTrail();
+        }
+    }
+
+    private void DrawTrail()
+    {
+        // Draw the path
+        var direction = nextMovePosition - transform.position;
+        direction = transform.position + (direction.normalized * 30);
+        var linePositions = new Vector3[] { transform.position, direction };
+        lineRenderer.SetPositions(linePositions);
+    }
 
     private void IntroAnimation()
     {
@@ -55,9 +74,13 @@ public class KillBall : MonoBehaviour
             case KillBallState.Intro:
                 break;
             case KillBallState.Aim:
+                lineRenderer.positionCount = 0;
+                isMoving = false;
                 HandleAimState();
                 break;
             case KillBallState.Move:
+                lineRenderer.positionCount = 2;
+                isMoving = true;
                 HandleMoveState();
                 break;
             default:
@@ -74,7 +97,7 @@ public class KillBall : MonoBehaviour
         castDirection = targetRotation * Vector3.forward;
 
         // Raycast in the position we are facing
-        if (Physics.SphereCast(castStart.position, sphereCollider.radius, castDirection, out var hit))
+        if (Physics.Raycast(castStart.position, castDirection, out var hit))
         {
             // Go to the target position
             var targetPosition = hit.point.normalized * (hit.point.magnitude - (sphereCollider.radius * 2));

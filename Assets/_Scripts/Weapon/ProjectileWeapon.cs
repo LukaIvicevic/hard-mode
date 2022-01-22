@@ -130,6 +130,9 @@ public class ProjectileWeapon : MonoBehaviour
         currentBullet.transform.forward = directionWithSpread.normalized;
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
 
+        // Debug
+        Logger.Instance.DrawRay(bulletSpawnPoint.position, currentBullet.transform.forward * 20, Color.white, 2);
+
         // Play muzzle flash
         if (muzzleFlash != null)
         {
