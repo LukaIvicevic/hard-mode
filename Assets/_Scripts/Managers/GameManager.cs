@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField]
+    private int difficulty = 1;
+
+    [SerializeField]
     private Camera playerCamera;
 
     [SerializeField]
@@ -20,5 +23,16 @@ public class GameManager : Singleton<GameManager>
     {
         playerCamera.GetComponent<StressReceiver>()?.InduceStress(shakeAmount);
         weaponCamera.GetComponent<StressReceiver>()?.InduceStress(shakeAmount * 0.2f);
+    }
+
+    public void SelectDifficulty(int d)
+    {
+        Logger.Instance.Log("Difficulty changed to: " + d);
+        difficulty = d;
+    }
+
+    public int GetDifficulty()
+    {
+        return difficulty;
     }
 }

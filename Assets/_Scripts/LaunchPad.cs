@@ -29,7 +29,6 @@ public class LaunchPad : MonoBehaviour
         }
 
         var controller = other.gameObject.GetComponent<Q3Movement.Q3PlayerController>();
-        Debug.DrawRay(transform.position, transform.up, Color.green, 10);
         controller.Launch(transform.up, launchForce);
     }
 }
