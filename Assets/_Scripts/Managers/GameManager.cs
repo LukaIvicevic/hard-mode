@@ -13,6 +13,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private Camera weaponCamera;
 
+    [SerializeField]
+    private Transform killBallCastStart;
+
     private bool started = false;
 
     public void StartFight()
@@ -42,6 +45,11 @@ public class GameManager : Singleton<GameManager>
     public int GetDifficulty()
     {
         return difficulty;
+    }
+
+    public Transform GetKillBallCastStart()
+    {
+        return killBallCastStart;
     }
 
     public void PlayerHitKillFloorTile()
