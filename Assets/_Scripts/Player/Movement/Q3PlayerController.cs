@@ -110,7 +110,8 @@ namespace Q3Movement
         {
             if (launchPadForce > 0)
             {
-                m_PlayerVelocity = new Vector3(m_PlayerVelocity.x, launchPadForce, m_PlayerVelocity.z);
+                var launch = launchPadDirection.normalized * launchPadForce;
+                m_PlayerVelocity = launch;
                 launchPadForce = 0;
             }
         }
