@@ -43,4 +43,9 @@ public class GameManager : Singleton<GameManager>
     {
         return difficulty;
     }
+
+    public void PlayerHitKillFloorTile()
+    {
+        print("You died");
+    }
 }

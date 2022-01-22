@@ -18,20 +18,22 @@ public class KillFloor : MonoBehaviour
     private List<TileRow> tileRows;
 
     [SerializeField]
-    private float timeBetweenFlashes;
+    private float timeBetweenDetonation = 10f;
 
     [SerializeField]
-    private float flashDuration;
+    private float timeBetweenFlashes = 0.5f;
 
     [SerializeField]
-    private int numberOfFlashes;
+    private float flashDuration = 0.5f;
+
+    [SerializeField]
+    private int numberOfFlashes = 3;
 
     private void Start()
     {
         SetDefaultMaterials();
 
-        var t = GetEveryOtherTile();
-        Detonate(t);
+        InvokeRepeating("Detonate", timeBetweenDetonation, timeBetweenDetonation);
     }
 
     private void SetDefaultMaterials()
@@ -56,32 +58,29 @@ public class KillFloor : MonoBehaviour
                 break;
             case TilePattern.Cross:
                 // TODO
-                break;
             case TilePattern.TargetPlayerCross:
                 // TODO
-                break;
             case TilePattern.TargetPlayerDiagonal:
                 // TODO
-                break;
             default:
-                GetEveryOtherTile();
+                tiles = GetEveryOtherTile();
                 break;
         }
 
-        Detonate(tiles);
+        DetonateTiles(tiles);
     }
 
-    private void Detonate(IEnumerable<KillFloorTile> tiles)
+    private void DetonateTiles(IEnumerable<KillFloorTile> tiles)
     {
         foreach (var tile in tiles)
         {
-            StartCoroutine(Detonate(tile));
+            StartCoroutine(DetonateTile(tile));
         }
     }
 
-    private IEnumerator Detonate(KillFloorTile tile)
+    private IEnumerator DetonateTile(KillFloorTile tile)
     {
-        var mesh= tile.GetComponent<MeshRenderer>();
+        var mesh = tile.GetComponent<MeshRenderer>();
         for (int i = 0; i < numberOfFlashes; i++)
         {
             // Change to flashMaterial
@@ -100,13 +99,24 @@ public class KillFloor : MonoBehaviour
         // Change to killMaterial
         mesh.material = killMaterial;
 
-        // Check if player was hit
+        // Move the collider down so the player can fall into the lava
+        var boxCollider = tile.GetComponent<BoxCollider>();
+        boxCollider.center = new Vector3(boxCollider.center.x, boxCollider.center.y - 1, boxCollider.center.z);
+        boxCollider.isTrigger = true;
+
+        // Set the tile to active
+        tile.SetActive(true);
 
         // Wait extended flashDuration
         yield return new WaitForSeconds(flashDuration * 2);
 
         // Change to defaultMaterial
         mesh.material = defaultMaterial;
+
+        // Reset tile
+        boxCollider.center = new Vector3(boxCollider.center.x, boxCollider.center.y + 1, boxCollider.center.z);
+        boxCollider.isTrigger = false;
+        tile.SetActive(false);
     }
 
     public void ChangeMaterials(IEnumerable<KillFloorTile> tiles)
@@ -146,7 +156,6 @@ public class KillFloor : MonoBehaviour
         public List<KillFloorTile> tiles;
 
         public List<KillFloorTile> GetEveryOtherTile(int startIndex) {
-            print(tiles.Count);
             var selectedTiles = new List<KillFloorTile>();
 
             for (int i = startIndex; i < tiles.Count; i += 2)

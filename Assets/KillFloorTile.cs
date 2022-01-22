@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class KillFloorTile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool isActive = false;
+
+    public void SetActive(bool active)
     {
-        
+        isActive = active;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (!isActive)
+        {
+            return;
+        }
+
+        var isPlayer = other.tag == "Player";
+        if (!isPlayer)
+        {
+            return;
+        }
+
+        GameManager.Instance.PlayerHitKillFloorTile();
     }
 }
