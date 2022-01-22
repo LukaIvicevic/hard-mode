@@ -123,7 +123,7 @@ public class UnitManager : Singleton<UnitManager>
     private void BossIntro()
     {
         // Activate boss game object and play the intro animation
-        // spiderBossObject.SetActive(true);
+        spiderBossObject.SetActive(true);
         bossStandAnimator.SetTrigger("Intro");
     }
 
@@ -135,7 +135,7 @@ public class UnitManager : Singleton<UnitManager>
         }
 
         // Wait before spawning
-        var delay = index * 0.5f;
+        var delay = index;
         yield return new WaitForSeconds(delay);
 
         // Spawn generator

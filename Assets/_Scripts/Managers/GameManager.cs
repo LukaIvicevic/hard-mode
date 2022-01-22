@@ -13,10 +13,18 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private Camera weaponCamera;
 
+    private bool started = false;
+
     public void StartFight()
     {
+        if (started)
+        {
+            return;
+        }
+
         UnitManager.Instance.SpawnGenerators();
         UnitManager.Instance.SpawnBoss();
+        started = true;
     }
 
     public void CameraShake(float shakeAmount)
