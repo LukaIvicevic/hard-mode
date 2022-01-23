@@ -16,9 +16,10 @@ public class GeneratorEngine : Enemy
         set { isDestroyed = value;  }
     }
 
-    private void Start()
+    private void Awake()
     {
         health = maxHealth;
+        print(health);
     }
 
     public override void TakeDamage(float damage)

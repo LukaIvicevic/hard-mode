@@ -64,6 +64,7 @@ public class Generator : MonoBehaviour
 
         healthbar.maxValue = engine1.GetHealth() + engine2.GetHealth();
         healthbar.value = healthbar.maxValue;
+        print(engine1.GetHealth());
     }
 
     private void OnDestroy()
