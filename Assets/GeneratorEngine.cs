@@ -1,4 +1,6 @@
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +17,8 @@ public class GeneratorEngine : Enemy
     private GameObject pointLight;
 
     private float health;
+    private TweenerCore<Vector3, Vector3, VectorOptions> tween;
+
     public bool isDestroyed {
         get { return health <= 0; }
         set { isDestroyed = value;  }
@@ -50,9 +54,13 @@ public class GeneratorEngine : Enemy
 
     private void Destroy()
     {
-        print("Engine destroyed");
         Destroy(pointLight);
         var targetPosition = new Vector3(transform.position.x, transform.position.y - 3, transform.position.z);
-        transform.DOMove(targetPosition, 0.75f);
+        tween = transform.DOMove(targetPosition, 0.25f).SetEase(Ease.InBack);
+    }
+
+    private void OnDestroy()
+    {
+        tween.Kill();
     }
 }
