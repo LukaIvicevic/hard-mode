@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
         return killBallCastStart;
     }
 
-    public void PlayerHitKillFloorTile(GameObject player)
+    public void KillPlayer(GameObject player)
     {
         // Temp
         player.transform.position = killBallCastStart.position;

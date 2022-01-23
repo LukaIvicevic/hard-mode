@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class GeneratorEngine : Enemy
 
     [SerializeField]
     private float maxHealth = 300f;
+
+    [SerializeField]
+    private GameObject pointLight;
 
     private float health;
     public bool isDestroyed {
@@ -46,7 +50,9 @@ public class GeneratorEngine : Enemy
 
     private void Destroy()
     {
-        // TODO Change the model
         print("Engine destroyed");
+        Destroy(pointLight);
+        var targetPosition = new Vector3(transform.position.x, transform.position.y - 3, transform.position.z);
+        transform.DOMove(targetPosition, 0.75f);
     }
 }

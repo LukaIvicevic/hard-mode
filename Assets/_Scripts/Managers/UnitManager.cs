@@ -96,6 +96,7 @@ public class UnitManager : Singleton<UnitManager>
             return;
         }
 
+        position = new Vector3(position.x, position.y + 1, position.z);
         Instantiate(killBallPrefab, position, Quaternion.identity);
     }
 
