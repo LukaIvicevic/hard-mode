@@ -16,8 +16,12 @@ public class GeneratorEngine : Enemy
     [SerializeField]
     private GameObject pointLight;
 
+    [SerializeField]
+    private GameObject sphere;
+
     private float health;
     private TweenerCore<Vector3, Vector3, VectorOptions> tween;
+    private Color baseColor;
 
     public bool isDestroyed {
         get { return health <= 0; }
@@ -27,7 +31,7 @@ public class GeneratorEngine : Enemy
     private void Awake()
     {
         health = maxHealth;
-        print(health);
+        baseColor = sphere.GetComponent<MeshRenderer>().material.color;
     }
 
     public override void TakeDamage(float damage)
@@ -38,6 +42,8 @@ public class GeneratorEngine : Enemy
         }
 
         health -= damage;
+
+        AdjustIntensity();
 
         if (isDestroyed)
         {
@@ -50,6 +56,16 @@ public class GeneratorEngine : Enemy
     public float GetHealth()
     {
         return health;
+    }
+
+    private void AdjustIntensity()
+    {
+        var healthPercentage = health / maxHealth;
+        var intensity = Mathf.Lerp(10, 2, healthPercentage);
+        print(intensity);
+        sphere.GetComponent<MeshRenderer>().material.color = baseColor * intensity;
+
+        sphere.GetComponent<Animator>().Play("EngineHit", -1, 0f);
     }
 
     private void Destroy()
