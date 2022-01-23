@@ -43,7 +43,7 @@ public class GeneratorEngine : Enemy
 
         health -= damage;
 
-        AdjustIntensity();
+        HitEffect();
 
         if (isDestroyed)
         {
@@ -58,13 +58,11 @@ public class GeneratorEngine : Enemy
         return health;
     }
 
-    private void AdjustIntensity()
+    private void HitEffect()
     {
         var healthPercentage = health / maxHealth;
         var intensity = Mathf.Lerp(10, 2, healthPercentage);
-        print(intensity);
         sphere.GetComponent<MeshRenderer>().material.color = baseColor * intensity;
-
         sphere.GetComponent<Animator>().Play("EngineHit", -1, 0f);
     }
 
