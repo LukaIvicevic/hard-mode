@@ -50,6 +50,9 @@ public class SpiderBoss : Enemy
     [SerializeField]
     private Slider healthbar;
 
+    [SerializeField]
+    private GameObject shootParticleSystem;
+
 
 
     private SpiderState turretState;
@@ -214,6 +217,9 @@ public class SpiderBoss : Enemy
         var turretShellInstance = Instantiate(shellPrefab);
         turretShellInstance.transform.position = shellSpawner.position;
         turretShellInstance.transform.rotation = shellSpawner.rotation;
+
+        // Spawn particle system
+        Instantiate(shootParticleSystem, shellSpawner.position, Quaternion.identity);
 
         ChangeState(SpiderState.Tracking);
     }

@@ -89,17 +89,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525cb40391b3a9e418c767019c90220d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 1000
+  rotationSpeed: 5
+  fireRate: 1
+  fireDelay: 1
+  forceFieldScale: {x: 50, y: 30, z: 65}
+  forceFieldAnimationDuration: 2
+  forceFieldAnimationEase: 18
   target: {fileID: 0}
   horizontalRotationGroup: {fileID: 2058648057696223510}
   verticalRotationGroup: {fileID: 4927744967224976542}
   shellSpawner: {fileID: 8725184288673724417}
   shellPrefab: {fileID: 940183875803687651, guid: 56b758be92da23d40adbd10bcb00c8f3,
     type: 3}
+  forceField: {fileID: 0}
   healthbar: {fileID: 0}
-  maxHealth: 1000
-  rotationSpeed: 5
-  fireRate: 1
-  fireDelay: 1
+  shootParticleSystem: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
+    type: 3}
 --- !u!1 &6753537872979695166
 GameObject:
   m_ObjectHideFlags: 0
