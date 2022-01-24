@@ -81,7 +81,6 @@ namespace Q3Movement
             HandleLaunchPad();
 
             m_MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            m_MouseLook.UpdateCursorLock();
             QueueJump();
 
             // Set movement state.
@@ -98,7 +97,10 @@ namespace Q3Movement
             weaponAnimator.SetBool("isGrounded", m_Character.isGrounded);
 
             // Rotate the character and camera.
-            m_MouseLook.LookRotation(m_Tran, m_CamTran);
+            if (!GameManager.Instance.isPaused)
+            {
+                m_MouseLook.LookRotation(m_Tran, m_CamTran);
+            }
 
             // Move the character.
             m_Character.Move(m_PlayerVelocity * Time.deltaTime);

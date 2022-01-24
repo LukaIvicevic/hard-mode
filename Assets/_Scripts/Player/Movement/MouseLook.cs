@@ -16,11 +16,9 @@ namespace Q3Movement
         [SerializeField] private float m_MaximumX = 90F;
         [SerializeField] private bool m_Smooth = false;
         [SerializeField] private float m_SmoothTime = 5f;
-        [SerializeField] private bool m_LockCursor = true;
 
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
-        private bool m_cursorIsLocked = true;
 
         public void Init(Transform character, Transform camera)
         {
@@ -52,50 +50,6 @@ namespace Q3Movement
             {
                 character.localRotation = m_CharacterTargetRot;
                 camera.localRotation = m_CameraTargetRot;
-            }
-
-            UpdateCursorLock();
-        }
-
-        public void SetCursorLock(bool value)
-        {
-            m_LockCursor = value;
-            if (!m_LockCursor)
-            {//we force unlock the cursor if the user disable the cursor locking helper
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-        }
-
-        public void UpdateCursorLock()
-        {
-            //if the user set "lockCursor" we check & properly lock the cursos
-            if (m_LockCursor)
-            {
-                InternalLockUpdate();
-            }
-        }
-
-        private void InternalLockUpdate()
-        {
-            if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                m_cursorIsLocked = false;
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                m_cursorIsLocked = true;
-            }
-
-            if (m_cursorIsLocked)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            else if (!m_cursorIsLocked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
             }
         }
 

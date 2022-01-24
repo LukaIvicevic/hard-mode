@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    public bool isPaused = false;
+
     [SerializeField]
     private int difficulty = 1;
 
@@ -17,6 +19,11 @@ public class GameManager : Singleton<GameManager>
     private Transform killBallCastStart;
 
     private bool started = false;
+
+    private void Start()
+    {
+        LockCursor();
+    }
 
     public void StartFight()
     {
@@ -57,5 +64,17 @@ public class GameManager : Singleton<GameManager>
         // Temp
         player.transform.position = killBallCastStart.position;
         print("You died");
+    }
+
+    public void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
