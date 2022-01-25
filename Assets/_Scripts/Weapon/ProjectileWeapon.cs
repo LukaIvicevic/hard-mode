@@ -15,6 +15,10 @@ public class ProjectileWeapon : MonoBehaviour
     private GameObject muzzleFlash;
     [SerializeField]
     private TextMeshProUGUI ammoDisplay;
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip audioClip;
 
     [Header("Bullet Stats")]
     [SerializeField]
@@ -137,6 +141,12 @@ public class ProjectileWeapon : MonoBehaviour
         if (muzzleFlash != null)
         {
             Instantiate(muzzleFlash, bulletSpawnPoint.position, Quaternion.identity);
+        }
+
+        // Play gun shot sound
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(audioClip);
         }
 
         bulletsLeft--;
