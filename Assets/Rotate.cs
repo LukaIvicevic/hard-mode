@@ -1,12 +1,28 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    void Start()
+    [SerializeField]
+    private bool counterRotate = false;
+
+    [SerializeField]
+    private float duration = 8;
+
+    [SerializeField]
+    private Ease ease = Ease.Linear;
+
+    private TweenerCore<Quaternion, Vector3, QuaternionOptions> tween;
+
+    private void Start()
     {
-        transform.DORotate(new Vector3(0, 360, 0), 8, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        tween = transform.DORotate(new Vector3(0, counterRotate ? -360 : 360, 0), duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(ease);
+    }
+
+    private void OnDestroy()
+    {
+        tween.Kill();
     }
 }
