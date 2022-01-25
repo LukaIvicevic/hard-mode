@@ -16,9 +16,13 @@ public class ProjectileWeapon : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI ammoDisplay;
     [SerializeField]
-    private AudioSource audioSource;
+    private AudioSource shootAudioSource;
     [SerializeField]
-    private AudioClip audioClip;
+    private AudioClip shootAudioClip;
+    [SerializeField]
+    private AudioSource reloadAudioSource;
+    [SerializeField]
+    private AudioClip reloadAudioClip;
 
     [Header("Bullet Stats")]
     [SerializeField]
@@ -87,7 +91,7 @@ public class ProjectileWeapon : MonoBehaviour
 
 
         // Check if we should reload
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize)
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading)
         {
             Reload();
         }
@@ -144,9 +148,9 @@ public class ProjectileWeapon : MonoBehaviour
         }
 
         // Play gun shot sound
-        if (audioSource != null)
+        if (shootAudioSource != null)
         {
-            SoundManager.Instance.PlayOneShot(audioSource, audioClip);
+            SoundManager.Instance.PlayOneShot(shootAudioSource, shootAudioClip);
         }
 
         bulletsLeft--;
@@ -175,6 +179,13 @@ public class ProjectileWeapon : MonoBehaviour
     {
         isReloading = true;
         weaponAnimator.SetBool("isReloading", true);
+
+        // Play reload sound
+        if (reloadAudioSource != null)
+        {
+            SoundManager.Instance.PlayNoOverlap(reloadAudioSource, reloadAudioClip);
+        }
+
         Invoke("ReloadFinished", reloadTime);
     }
 

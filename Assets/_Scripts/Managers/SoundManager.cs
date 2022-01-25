@@ -35,4 +35,16 @@ public class SoundManager : Singleton<SoundManager>
         audioSource.volume = volume;
         audioSource.PlayOneShot(audioClip);
     }
+
+    public void PlayNoOverlap(AudioSource audioSource, AudioClip audioClip)
+    {
+        audioSource.volume = volume;
+        audioSource.clip = audioClip;
+        if (audioSource.isPlaying)
+        {
+            return;
+        }
+
+        audioSource.Play();
+    }
 }
