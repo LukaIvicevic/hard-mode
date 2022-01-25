@@ -8,8 +8,8 @@ public class TurretShell : MonoBehaviour
     [SerializeField]
     private float speed = 100;
 
-    //[SerializeField]
-    //private int damage = 20;
+    [SerializeField]
+    private float radius = 5;
 
     [SerializeField]
     private GameObject explosionEffect;
@@ -46,6 +46,14 @@ public class TurretShell : MonoBehaviour
         GameManager.Instance.CameraShake(0.4f);
 
         // Apply damage
+        var colliders = Physics.OverlapSphere(transform.position, radius);
+        foreach (var collider in colliders)
+        {
+            if (collider.tag == "Player")
+            {
+                GameManager.Instance.KillPlayer(collider.gameObject);
+            }
+        }
 
         // Destroy shell
         Destroy(gameObject);

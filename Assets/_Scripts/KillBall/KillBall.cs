@@ -26,7 +26,7 @@ public class KillBall : MonoBehaviour
         Move
     }
 
-    void Start()
+    private void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
         lineRenderer = GetComponent<LineRenderer>();
@@ -34,11 +34,23 @@ public class KillBall : MonoBehaviour
         IntroAnimation();
     }
 
-    void Update() {
+    private void Update() {
         if (isMoving)
         {
             DrawTrail();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var isPlayer = other.tag == "Player";
+        if (!isPlayer)
+        {
+            return;
+        }
+
+        var player = other.gameObject;
+        GameManager.Instance.KillPlayer(player);
     }
 
     private void DrawTrail()
