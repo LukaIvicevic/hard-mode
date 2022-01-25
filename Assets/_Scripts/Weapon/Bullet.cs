@@ -18,7 +18,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.name);
         var layer = other.gameObject.layer;
         if (layer == ignoreCollisionLayer)
         {

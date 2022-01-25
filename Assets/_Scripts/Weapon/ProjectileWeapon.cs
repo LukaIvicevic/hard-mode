@@ -146,7 +146,7 @@ public class ProjectileWeapon : MonoBehaviour
         // Play gun shot sound
         if (audioSource != null)
         {
-            audioSource.PlayOneShot(audioClip);
+            SoundManager.Instance.PlayOneShot(audioSource, audioClip);
         }
 
         bulletsLeft--;
