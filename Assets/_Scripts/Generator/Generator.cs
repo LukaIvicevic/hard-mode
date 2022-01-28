@@ -74,6 +74,11 @@ public class Generator : MonoBehaviour
     private void Destroyed()
     {
         UnitManager.Instance.GeneratorDestroyed(id);
+        transform.DOMove(new Vector3(transform.position.x, transform.position.y - 10, transform.position.z), 2).SetEase(Ease.InOutExpo).OnComplete(Destroy);
+    }
+
+    private void Destroy()
+    {
         Destroy(gameObject);
     }
 
