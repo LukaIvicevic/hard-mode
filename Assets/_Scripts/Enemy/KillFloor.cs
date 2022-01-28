@@ -56,12 +56,15 @@ public class KillFloor : MonoBehaviour
             case TilePattern.EveryOther:
                 tiles = GetEveryOtherTile();
                 break;
-            case TilePattern.Cross:
-                // TODO
             case TilePattern.TargetPlayerCross:
-                // TODO
-            case TilePattern.TargetPlayerDiagonal:
-                // TODO
+                tiles = GetTargetPlayerCrossTiles();
+                break;
+            case TilePattern.Cross:
+                tiles = GetCrossTiles();
+                break;
+            case TilePattern.Diagonal:
+                tiles = GetDiagonalTiles();
+                break;
             default:
                 tiles = GetEveryOtherTile();
                 break;
@@ -142,12 +145,99 @@ public class KillFloor : MonoBehaviour
         return selectedTiles;
     }
 
+    private List<KillFloorTile> GetTargetPlayerCrossTiles()
+    {
+        var selectedTiles = new List<KillFloorTile>();
+        var selectedRow = -1;
+        var selectedColumn = -1;
+
+        for (int i = 0; i < tileRows.Count; i++)
+        {
+            for (int k = 0; k < tileRows[i].tiles.Count; k++)
+            {
+                // OverlapBox to find the tile that the player is currently standing on
+                var boxCenter = tileRows[i].tiles[k].transform.position;
+                boxCenter = new Vector3(boxCenter.x + 10, boxCenter.y, boxCenter.z + 9);
+                var colliders = Physics.OverlapBox(boxCenter, new Vector3(10, 10, 10));
+                foreach (var collider in colliders)
+                {
+                    if (collider.tag == "Player")
+                    {
+                        selectedRow = i;
+                        selectedColumn = k;
+                    }
+                }
+            }
+        }
+
+        // Just return a cross pattern if we didn't find the player
+        if (selectedRow == -1 || selectedColumn == -1)
+        {
+            return GetCrossTiles();
+        }
+
+        // Select the entire row
+        foreach (var tile in tileRows[selectedRow].tiles)
+        {
+            selectedTiles.Add(tile);
+        }
+
+        // Select the entire column
+        foreach (var tileRow in tileRows)
+        {
+            selectedTiles.Add(tileRow.tiles[selectedColumn]);
+        }
+
+        return selectedTiles;
+    }
+
+    private List<KillFloorTile> GetCrossTiles()
+    {
+        var selectedTiles = new List<KillFloorTile>();
+        var selectedRow = -1;
+        var selectedColumn = -1;
+
+        selectedRow = tileRows.Count / 2;
+        selectedColumn = tileRows[0].tiles.Count / 2;
+
+        // Select the entire row
+        foreach (var tile in tileRows[selectedRow].tiles)
+        {
+            selectedTiles.Add(tile);
+        }
+
+        // Select the entire column
+        foreach (var tileRow in tileRows)
+        {
+            selectedTiles.Add(tileRow.tiles[selectedColumn]);
+        }
+
+        return selectedTiles;
+    }
+
+    private List<KillFloorTile> GetDiagonalTiles()
+    {
+        var selectedTiles = new List<KillFloorTile>();
+
+
+        for (int i = 0; i < tileRows.Count; i++)
+        {
+            var length = tileRows[i].tiles.Count;
+            var first = tileRows[i].tiles[i];
+            var second = tileRows[i].tiles[length - 1 - i];
+            selectedTiles.Add(first);
+            selectedTiles.Add(second);
+        }
+
+        return selectedTiles;
+    }
+
     private enum TilePattern
     {
         EveryOther,
         Cross,
+        Diagonal,
         TargetPlayerCross,
-        TargetPlayerDiagonal,
     }
 
     [Serializable]
