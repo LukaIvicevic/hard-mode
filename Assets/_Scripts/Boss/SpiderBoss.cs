@@ -131,10 +131,21 @@ public class SpiderBoss : Enemy
 
     }
 
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
     private void AdjustDifficulty()
     {
         fireRate = Stats.GetLinearEvaluation(difficultyCurve, stats.tankFireRateD1, stats.tankMaxFireRateD10);
         fireDelay = Stats.GetLinearEvaluation(difficultyCurve, stats.tankFireRateD1, stats.tankMaxFireRateD10);
+        maxHealth = Stats.GetLinearEvaluation(difficultyCurve, stats.bossHealthD1, stats.bossHealthD10);
     }
 
     #region Force Field

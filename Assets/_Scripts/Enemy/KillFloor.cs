@@ -171,7 +171,7 @@ public class KillFloor : MonoBehaviour
                 // OverlapBox to find the tile that the player is currently standing on
                 var boxCenter = tileRows[i].tiles[k].transform.position;
                 boxCenter = new Vector3(boxCenter.x + 10, boxCenter.y, boxCenter.z + 9);
-                var colliders = Physics.OverlapBox(boxCenter, new Vector3(10, 10, 10));
+                var colliders = Physics.OverlapBox(boxCenter, new Vector3(10, 100, 10));
                 foreach (var collider in colliders)
                 {
                     if (collider.tag == "Player")

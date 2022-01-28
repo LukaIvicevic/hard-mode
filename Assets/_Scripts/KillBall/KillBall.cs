@@ -6,6 +6,11 @@ using UnityEngine;
 public class KillBall : MonoBehaviour
 {
     [SerializeField]
+    private Stats stats;
+    [SerializeField]
+    private AnimationCurve difficultyCurve;
+
+    [SerializeField]
     private float aimDuration = 1;
     [SerializeField]
     private float speed = 10;
@@ -28,10 +33,17 @@ public class KillBall : MonoBehaviour
 
     private void Start()
     {
+        AdjustDifficulty();
+
         sphereCollider = GetComponent<SphereCollider>();
         lineRenderer = GetComponent<LineRenderer>();
         castStart = GameManager.Instance.GetKillBallCastStart();
         IntroAnimation();
+    }
+
+    private void AdjustDifficulty()
+    {
+        speed = Stats.GetLinearEvaluation(difficultyCurve, stats.killBallSpeedD1, stats.killBallSpeedD10);
     }
 
     private void Update() {
