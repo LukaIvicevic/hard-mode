@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
         difficulty = d;
     }
 
-    public int GetDifficulty()
+    public float GetDifficulty()
     {
         return difficulty;
     }

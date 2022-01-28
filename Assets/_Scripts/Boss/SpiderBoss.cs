@@ -2,12 +2,19 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpiderBoss : Enemy
 {
     [Header("Stats")]
+    [SerializeField]
+    private Stats stats;
+
+    [SerializeField]
+    private AnimationCurve difficultyCurve;
+
     [SerializeField]
     private float maxHealth = 1000f;
 
@@ -76,6 +83,8 @@ public class SpiderBoss : Enemy
 
     private void Start()
     {
+        AdjustDifficulty();
+
         health = maxHealth;
         canFireTime = Time.time + fireRate;
         ChangeState(SpiderState.Starting);
@@ -120,6 +129,12 @@ public class SpiderBoss : Enemy
         // Ease in healthbar
         healthbar.transform.DOLocalMoveY(475, 1).SetEase(Ease.OutExpo);
 
+    }
+
+    private void AdjustDifficulty()
+    {
+        fireRate = Stats.GetLinearEvaluation(difficultyCurve, stats.tankFireRateD1, stats.tankMaxFireRateD10);
+        fireDelay = Stats.GetLinearEvaluation(difficultyCurve, stats.tankFireRateD1, stats.tankMaxFireRateD10);
     }
 
     #region Force Field

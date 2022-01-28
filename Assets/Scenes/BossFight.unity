@@ -44252,7 +44252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  difficulty: 1
+  difficulty: 5
   playerCamera: {fileID: 252951722}
   weaponCamera: {fileID: 1386392300}
   killBallCastStart: {fileID: 1719104054}
@@ -55834,7 +55834,7 @@ PrefabInstance:
     - target: {fileID: 2984771744523201141, guid: 114849b77a013f4468f5bc64af9dcc95,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
         type: 3}
@@ -55843,9 +55843,94 @@ PrefabInstance:
       objectReference: {fileID: 2038535552}
     - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
         type: 3}
+      propertyPath: fireRate
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: fireDelay
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 746824143}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[0].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300531574367696539, guid: 114849b77a013f4468f5bc64af9dcc95,
+        type: 3}
+      propertyPath: difficultyCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 4900998896228045109, guid: 114849b77a013f4468f5bc64af9dcc95,
         type: 3}
       propertyPath: m_IsActive

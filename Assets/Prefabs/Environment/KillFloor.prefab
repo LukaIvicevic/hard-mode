@@ -92,6 +92,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1876e0c327858cd449eeeaffe838bbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  stats: {fileID: 11400000, guid: 915ebf1f4732e7946b4c58a68791c104, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8d530ffe6c4968843806085897955b9d, type: 2}
   flashMaterial: {fileID: 2100000, guid: 4944e2c33c99f9f46a4796e2e746213e, type: 2}
   killMaterial: {fileID: 2100000, guid: 764ca85244fe1b84098c95e706e8bd59, type: 2}
