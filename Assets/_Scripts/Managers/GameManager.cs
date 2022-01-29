@@ -63,7 +63,6 @@ public class GameManager : Singleton<GameManager>
     {
         // Temp
         //player.transform.position = killBallCastStart.position;
-        print("You died");
     }
 
     public void LockCursor()

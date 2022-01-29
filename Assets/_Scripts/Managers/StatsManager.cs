@@ -39,7 +39,8 @@ public class StatsManager : Singleton<StatsManager>
     public float GetDifficultyValue(float d1, float d10)
     {
         var difficulty = GameManager.Instance.GetDifficulty();
-        return Mathf.Lerp(d1, d10, difficulty);
+        var t = difficulty / 10; // Get percentage difficulty
+        return Mathf.Lerp(d1, d10, t);
     }
 
     public static int GetNumberOfKillBallsToSpawn()
