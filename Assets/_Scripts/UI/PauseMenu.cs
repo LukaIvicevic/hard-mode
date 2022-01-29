@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseMenuToggle : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject pauseMenu;
@@ -10,8 +10,7 @@ public class PauseMenuToggle : MonoBehaviour
     [SerializeField]
     private GameObject hud;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.Escape))
         if (Input.GetKeyDown(KeyCode.F1))
@@ -20,32 +19,43 @@ public class PauseMenuToggle : MonoBehaviour
         }
     }
 
-    private void TogglePauseMenu()
-    {
-        if (GameManager.Instance.isPaused)
-        {
-            HidePauseMenu();
-            return;
-        }
-
-        ShowPauseMenu();
-    }
-
-    private void ShowPauseMenu()
-    {
-        pauseMenu.SetActive(true);
-        hud.SetActive(false);
-        Time.timeScale = 0;
-        GameManager.Instance.UnlockCursor();
-        GameManager.Instance.isPaused = true;
-    }
-
-    private void HidePauseMenu()
+    public void Resume()
     {
         pauseMenu.SetActive(false);
         hud.SetActive(true);
         Time.timeScale = 1;
         GameManager.Instance.LockCursor();
         GameManager.Instance.isPaused = false;
+    }
+
+    public void Restart()
+    {
+        Resume();
+        GameManager.Instance.Restart();
+    }
+
+    public void Quit()
+    {
+        GameManager.Instance.Quit();
+    }
+
+    private void TogglePauseMenu()
+    {
+        if (GameManager.Instance.isPaused)
+        {
+            Resume();
+            return;
+        }
+
+        Pause();
+    }
+
+    private void Pause()
+    {
+        pauseMenu.SetActive(true);
+        hud.SetActive(false);
+        Time.timeScale = 0;
+        GameManager.Instance.UnlockCursor();
+        GameManager.Instance.isPaused = true;
     }
 }

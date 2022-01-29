@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -37,6 +38,16 @@ public class GameManager : Singleton<GameManager>
         started = true;
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene("BossFight");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     public void CameraShake(float shakeAmount)
     {
         playerCamera.GetComponent<StressReceiver>()?.InduceStress(shakeAmount);
@@ -63,6 +74,7 @@ public class GameManager : Singleton<GameManager>
     {
         // Temp
         //player.transform.position = killBallCastStart.position;
+        Time.timeScale = 0.2f;
     }
 
     public void LockCursor()

@@ -62,6 +62,11 @@ public class ProjectileWeapon : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.isPaused)
+        {
+            return;
+        }
+
         HandleInput();
 
         // Setup GUI
