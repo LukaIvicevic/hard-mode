@@ -21,6 +21,9 @@ public class GameManager : Singleton<GameManager>
 
     private bool started = false;
 
+    [SerializeField]
+    private float playerSensitivity = 1f;
+
     private void Start()
     {
         LockCursor();
@@ -87,5 +90,15 @@ public class GameManager : Singleton<GameManager>
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public float GetSensitivity()
+    {
+        return playerSensitivity;
+    }
+
+    public void SetSensitivity(float value)
+    {
+        playerSensitivity = value;
     }
 }

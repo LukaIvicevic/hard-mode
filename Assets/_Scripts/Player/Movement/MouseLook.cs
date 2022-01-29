@@ -28,8 +28,8 @@ namespace Q3Movement
 
         public void LookRotation(Transform character, Transform camera)
         {
-            float yRot = Input.GetAxis("Mouse X") * m_XSensitivity;
-            float xRot = Input.GetAxis("Mouse Y") * m_YSensitivity;
+            float yRot = Input.GetAxis("Mouse X") * GameManager.Instance.GetSensitivity();
+            float xRot = Input.GetAxis("Mouse Y") * GameManager.Instance.GetSensitivity();
 
             m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
