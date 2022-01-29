@@ -30,6 +30,8 @@ public class GeneratorEngine : Enemy
 
     private void Awake()
     {
+        SetupDifficulty();
+
         health = maxHealth;
         baseColor = sphere.GetComponent<MeshRenderer>().material.color;
     }
@@ -56,6 +58,11 @@ public class GeneratorEngine : Enemy
     public float GetHealth()
     {
         return health;
+    }
+
+    private void SetupDifficulty()
+    {
+        maxHealth = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.engineHealthD1, StatsManager.Instance.engineHealthD10);
     }
 
     private void HitEffect()

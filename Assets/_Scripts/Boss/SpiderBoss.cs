@@ -10,12 +10,6 @@ public class SpiderBoss : Enemy
 {
     [Header("Stats")]
     [SerializeField]
-    private Stats stats;
-
-    [SerializeField]
-    private AnimationCurve difficultyCurve;
-
-    [SerializeField]
     private float maxHealth = 1000f;
 
     [SerializeField]
@@ -143,9 +137,9 @@ public class SpiderBoss : Enemy
 
     private void AdjustDifficulty()
     {
-        fireRate = Stats.GetLinearEvaluation(difficultyCurve, stats.tankFireRateD1, stats.tankMaxFireRateD10);
-        fireDelay = Stats.GetLinearEvaluation(difficultyCurve, stats.tankFireRateD1, stats.tankMaxFireRateD10);
-        maxHealth = Stats.GetLinearEvaluation(difficultyCurve, stats.bossHealthD1, stats.bossHealthD10);
+        fireRate = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.tankFireRateD1, StatsManager.Instance.tankMaxFireRateD10);
+        fireDelay = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.tankFireRateD1, StatsManager.Instance.tankMaxFireRateD10);
+        maxHealth = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.bossHealthD1, StatsManager.Instance.bossHealthD10);
     }
 
     #region Force Field

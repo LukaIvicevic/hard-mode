@@ -44636,7 +44636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  difficulty: 5
+  difficulty: 8
   playerCamera: {fileID: 252951722}
   weaponCamera: {fileID: 1386392300}
   killBallCastStart: {fileID: 1719104054}

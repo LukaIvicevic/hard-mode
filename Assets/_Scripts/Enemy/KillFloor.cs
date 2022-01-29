@@ -7,12 +7,6 @@ using UnityEngine;
 public class KillFloor : MonoBehaviour
 {
     [SerializeField]
-    private AnimationCurve difficultyCurve;
-
-    [SerializeField]
-    private Stats stats;
-
-    [SerializeField]
     private Material defaultMaterial;
 
     [SerializeField]
@@ -46,7 +40,7 @@ public class KillFloor : MonoBehaviour
 
     private void AdjustDifficulty()
     {
-        timeBetweenDetonation = Stats.GetLinearEvaluation(difficultyCurve, stats.killFloorTimeBetweenDetonationsD1, stats.killFloorMaxTimeBetweenDetonationsD10);
+        timeBetweenDetonation = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.killFloorTimeBetweenDetonationsD1, StatsManager.Instance.killFloorMaxTimeBetweenDetonationsD10);
     }
 
     private void SetDefaultMaterials()

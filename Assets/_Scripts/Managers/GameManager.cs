@@ -62,7 +62,7 @@ public class GameManager : Singleton<GameManager>
     public void KillPlayer(GameObject player)
     {
         // Temp
-        player.transform.position = killBallCastStart.position;
+        //player.transform.position = killBallCastStart.position;
         print("You died");
     }
 

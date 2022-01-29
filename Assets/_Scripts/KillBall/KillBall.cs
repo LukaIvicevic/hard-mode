@@ -6,11 +6,6 @@ using UnityEngine;
 public class KillBall : MonoBehaviour
 {
     [SerializeField]
-    private Stats stats;
-    [SerializeField]
-    private AnimationCurve difficultyCurve;
-
-    [SerializeField]
     private float aimDuration = 1;
     [SerializeField]
     private float speed = 10;
@@ -43,7 +38,7 @@ public class KillBall : MonoBehaviour
 
     private void AdjustDifficulty()
     {
-        speed = Stats.GetLinearEvaluation(difficultyCurve, stats.killBallSpeedD1, stats.killBallSpeedD10);
+        speed = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.killBallSpeedD1, StatsManager.Instance.killBallSpeedD10);
     }
 
     private void Update() {

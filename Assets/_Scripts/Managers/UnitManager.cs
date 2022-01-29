@@ -81,7 +81,7 @@ public class UnitManager : Singleton<UnitManager>
 
     public void GeneratorDestroyed(int id)
     {
-        var numberToSpawn = Stats.GetNumberOfKillBallsToSpawn();
+        var numberToSpawn = StatsManager.GetNumberOfKillBallsToSpawn();
         for (int i = 0; i < numberToSpawn; i++)
         {
             SpawnKillBall(generators[id].transform.position);
