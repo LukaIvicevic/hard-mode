@@ -8,6 +8,9 @@ public class GameManager : Singleton<GameManager>
     public bool isPaused = false;
 
     [SerializeField]
+    private DeathMenu deathMenu;
+
+    [SerializeField]
     private int difficulty = 1;
 
     [SerializeField]
@@ -21,7 +24,6 @@ public class GameManager : Singleton<GameManager>
 
     private bool started = false;
 
-    [SerializeField]
     private float playerSensitivity = 1f;
 
     private void Start()
@@ -77,7 +79,7 @@ public class GameManager : Singleton<GameManager>
     {
         // Temp
         //player.transform.position = killBallCastStart.position;
-        Time.timeScale = 0.2f;
+        deathMenu.PlayerDied();
     }
 
     public void LockCursor()
