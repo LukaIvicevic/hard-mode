@@ -34,6 +34,8 @@ public class Sensitivity : MonoBehaviour
             return;
         }
 
+        value = Mathf.Floor(value * 100) / 100;
+
         if (value < minSens)
         {
             value = minSens;
@@ -53,6 +55,8 @@ public class Sensitivity : MonoBehaviour
     private void OnSliderValueChanged()
     {
         var value = slider.value;
+
+        value = Mathf.Floor(value * 100) / 100;
 
         if (value < minSens)
         {
