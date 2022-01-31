@@ -18,7 +18,7 @@ public class Rotate : MonoBehaviour
 
     private void Start()
     {
-        tween = transform.DORotate(new Vector3(0, counterRotate ? -360 : 360, 0), duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(ease);
+        tween = transform.DORotate(new Vector3(transform.rotation.eulerAngles.x, counterRotate ? -360 : 360, transform.rotation.eulerAngles.z), duration, RotateMode.FastBeyond360).SetLoops(-1).SetEase(ease);
     }
 
     private void OnDestroy()
