@@ -2,19 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : Singleton<SoundManager>
+public class SoundManager : SingletonPersistent<SoundManager>
 {
-
     [SerializeField]
     private AudioClip ambience;
 
     private AudioSource globalSource;
 
-    private float volume = 1;
-
     private void Start()
     {
         PlayAmbientMusic();
+        SettingsManager.Instance.onVolumeChanged += VolumeChanged;
+    }
+
+    public void PlayOneShot(AudioSource audioSource, AudioClip audioClip)
+    {
+        audioSource.volume = SettingsManager.Instance.Volume;
+        audioSource.PlayOneShot(audioClip);
+    }
+
+    public void PlayNoOverlap(AudioSource audioSource, AudioClip audioClip)
+    {
+        audioSource.volume = SettingsManager.Instance.Volume;
+        audioSource.clip = audioClip;
+        if (audioSource.isPlaying)
+        {
+            return;
+        }
+
+        audioSource.Play();
     }
 
     private void PlayAmbientMusic()
@@ -27,24 +43,12 @@ public class SoundManager : Singleton<SoundManager>
         }
         globalSource.loop = true;
         globalSource.clip = ambience;
+        globalSource.volume = SettingsManager.Instance.Volume;
         globalSource.Play();
     }
 
-    public void PlayOneShot(AudioSource audioSource, AudioClip audioClip)
+    private void VolumeChanged()
     {
-        audioSource.volume = volume;
-        audioSource.PlayOneShot(audioClip);
-    }
-
-    public void PlayNoOverlap(AudioSource audioSource, AudioClip audioClip)
-    {
-        audioSource.volume = volume;
-        audioSource.clip = audioClip;
-        if (audioSource.isPlaying)
-        {
-            return;
-        }
-
-        audioSource.Play();
+        globalSource.volume = SettingsManager.Instance.Volume;
     }
 }

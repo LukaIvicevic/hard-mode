@@ -57,7 +57,7 @@ public class KillBall : MonoBehaviour
         }
 
         var player = other.gameObject;
-        GameManager.Instance.KillPlayer(player);
+        GameManager.Instance.PlayerDied();
     }
 
     private void DrawTrail()

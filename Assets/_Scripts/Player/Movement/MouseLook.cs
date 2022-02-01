@@ -9,8 +9,6 @@ namespace Q3Movement
     [Serializable]
     public class MouseLook
     {
-        [SerializeField] private float m_XSensitivity = 2f;
-        [SerializeField] private float m_YSensitivity = 2f;
         [SerializeField] private bool m_ClampVerticalRotation = true;
         [SerializeField] private float m_MinimumX = -90F;
         [SerializeField] private float m_MaximumX = 90F;
@@ -28,8 +26,8 @@ namespace Q3Movement
 
         public void LookRotation(Transform character, Transform camera)
         {
-            float yRot = Input.GetAxis("Mouse X") * GameManager.Instance.GetSensitivity();
-            float xRot = Input.GetAxis("Mouse Y") * GameManager.Instance.GetSensitivity();
+            float yRot = Input.GetAxis("Mouse X") * SettingsManager.Instance.Sensitivity;
+            float xRot = Input.GetAxis("Mouse Y") * SettingsManager.Instance.Sensitivity;
 
             m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject hud;
+
+    [SerializeField]
+    private Slider volumeSlider;
+
+    private void Start()
+    {
+        volumeSlider.value = SettingsManager.Instance.Volume;
+    }
 
     private void Update()
     {
@@ -37,6 +46,11 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         GameManager.Instance.Quit();
+    }
+
+    public void ChangeVolume()
+    {
+        SettingsManager.Instance.ChangeVolume(volumeSlider.value);
     }
 
     private void TogglePauseMenu()

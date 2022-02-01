@@ -24,8 +24,6 @@ public class GameManager : Singleton<GameManager>
 
     private bool started = false;
 
-    private float playerSensitivity = 1f;
-
     private void Start()
     {
         LockCursor();
@@ -75,10 +73,8 @@ public class GameManager : Singleton<GameManager>
         return killBallCastStart;
     }
 
-    public void KillPlayer(GameObject player)
+    public void PlayerDied()
     {
-        // Temp
-        //player.transform.position = killBallCastStart.position;
         deathMenu.PlayerDied();
     }
 
@@ -92,15 +88,5 @@ public class GameManager : Singleton<GameManager>
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-    }
-
-    public float GetSensitivity()
-    {
-        return playerSensitivity;
-    }
-
-    public void SetSensitivity(float value)
-    {
-        playerSensitivity = value;
     }
 }

@@ -17,8 +17,8 @@ public class Sensitivity : MonoBehaviour
 
     private void Start()
     {
-        input.text = GameManager.Instance.GetSensitivity().ToString();
-        slider.value = GameManager.Instance.GetSensitivity();
+        input.text = SettingsManager.Instance.Sensitivity.ToString();
+        slider.value = SettingsManager.Instance.Sensitivity;
 
         input.onValueChanged.AddListener(delegate { OnInputValueChanged(); });
         slider.onValueChanged.AddListener(delegate { OnSliderValueChanged(); });
@@ -49,7 +49,7 @@ public class Sensitivity : MonoBehaviour
         input.text = value.ToString();
         slider.value = value;
 
-        GameManager.Instance.SetSensitivity(value);
+        SettingsManager.Instance.ChangeSensitivity(value);
     }
 
     private void OnSliderValueChanged()
@@ -71,6 +71,6 @@ public class Sensitivity : MonoBehaviour
         input.text = value.ToString();
         slider.value = value;
 
-        GameManager.Instance.SetSensitivity(value);
+        SettingsManager.Instance.ChangeSensitivity(value);
     }
 }

@@ -51,7 +51,7 @@ public class TurretShell : MonoBehaviour
         {
             if (collider.tag == "Player")
             {
-                GameManager.Instance.KillPlayer(collider.gameObject);
+                GameManager.Instance.PlayerDied();
             }
         }
 

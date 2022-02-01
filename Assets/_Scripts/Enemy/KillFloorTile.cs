@@ -25,6 +25,6 @@ public class KillFloorTile : MonoBehaviour
         }
 
         var player = other.gameObject;
-        GameManager.Instance.KillPlayer(player);
+        GameManager.Instance.PlayerDied();
     }
 }
