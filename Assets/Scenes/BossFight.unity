@@ -2181,8 +2181,8 @@ MonoBehaviour:
   killFloorMaxTimeBetweenDetonationsD10: 5
   killBallSpeedD1: 6
   killBallSpeedD10: 15
-  bossHealthD1: 200
-  bossHealthD10: 2000
+  bossHealthD1: 1000
+  bossHealthD10: 3000
   engineHealthD1: 100
   engineHealthD10: 550
 --- !u!4 &112973908

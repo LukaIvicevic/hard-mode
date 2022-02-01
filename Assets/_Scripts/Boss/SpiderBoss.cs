@@ -140,6 +140,7 @@ public class SpiderBoss : Enemy
         fireRate = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.tankFireRateD1, StatsManager.Instance.tankMaxFireRateD10);
         fireDelay = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.tankFireRateD1, StatsManager.Instance.tankMaxFireRateD10);
         maxHealth = StatsManager.Instance.GetDifficultyValue(StatsManager.Instance.bossHealthD1, StatsManager.Instance.bossHealthD10);
+        print(maxHealth);
     }
 
     #region Force Field

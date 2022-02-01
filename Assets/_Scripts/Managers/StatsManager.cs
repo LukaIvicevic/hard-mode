@@ -7,16 +7,16 @@ using UnityEngine;
     Difficulty Modifier
 
     Level   | Tank fire rate    | Kill floor time between detonations | Number of kill balls spawned  | Kill ball speed   | Boss health   | Generator health  |
-      1     |         2         |                20                   |               1               |          6        |               |          100       |
-      2     |                   |                                     |                               |                   |         4     |                   |
-      3     |                   |                                     |                               |                   |         6     |                   |
-      4     |                   |                                     |                               |                   |        8      |                   |
-      5     |                   |                                     |               2               |                   |        1000   |                   |
-      6     |                   |                                     |                               |                   |        12     |                   |
-      7     |                   |                                     |                               |                   |         14    |                   |
-      8     |                   |                                     |               3               |                   |         16    |                   |
-      9     |                   |                                     |                               |                   |         18    |                   |
-      10    |         0.25      |                 5                   |                               |          15       |       2000    |          550      |
+      1     |         2         |                20                   |               1               |          6        |       1000    |          100       |
+      2     |                   |                                     |                               |                   |               |                   |
+      3     |                   |                                     |                               |                   |               |                   |
+      4     |                   |                                     |                               |                   |               |                   |
+      5     |                   |                                     |               2               |                   |               |                   |
+      6     |                   |                                     |                               |                   |               |                   |
+      7     |                   |                                     |                               |                   |               |                   |
+      8     |                   |                                     |               3               |                   |               |                   |
+      9     |                   |                                     |                               |                   |               |                   |
+      10    |         0.25      |                 5                   |                               |          15       |       3000    |          550      |
 */
 
 public class StatsManager : Singleton<StatsManager>
@@ -30,8 +30,8 @@ public class StatsManager : Singleton<StatsManager>
     public float killBallSpeedD1 = 6f;
     public float killBallSpeedD10 = 15f;
 
-    public float bossHealthD1 = 200f;
-    public float bossHealthD10 = 2000f;
+    public float bossHealthD1 = 1000f;
+    public float bossHealthD10 = 3000f;
 
     public float engineHealthD1 = 100f;
     public float engineHealthD10 = 550f;
@@ -40,6 +40,10 @@ public class StatsManager : Singleton<StatsManager>
     {
         var difficulty = GameManager.Instance.GetDifficulty();
         var t = difficulty / 10; // Get percentage difficulty
+        print(difficulty);
+        print(t);
+        print(d1);
+        print(d10);
         return Mathf.Lerp(d1, d10, t);
     }
 
