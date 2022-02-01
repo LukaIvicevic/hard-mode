@@ -11,6 +11,9 @@ public class GameManager : Singleton<GameManager>
     private DeathMenu deathMenu;
 
     [SerializeField]
+    private VictoryMenu victoryMenu;
+
+    [SerializeField]
     private int difficulty = 1;
 
     [SerializeField]
@@ -76,6 +79,11 @@ public class GameManager : Singleton<GameManager>
     public void PlayerDied()
     {
         deathMenu.PlayerDied();
+    }
+
+    public void PlayerWins()
+    {
+        victoryMenu.PlayerWins();
     }
 
     public void LockCursor()

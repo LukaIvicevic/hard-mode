@@ -259,6 +259,7 @@ public class SpiderBoss : Enemy
 
         if (health <= 0)
         {
+            GameManager.Instance.PlayerWins();
             Destroy(gameObject);
         }
     }
