@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private int ignoreCollisionLayer = 3;
 
+    [SerializeField]
+    private AudioClip bulletImpact;
+
+    [SerializeField]
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -30,6 +35,17 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(damage);
         }
 
+        if (audioSource != null)
+        {
+            SoundManager.Instance.PlayOneShot(audioSource, bulletImpact);
+        }
+
+        // gameObject.SetActive(false);
+        Invoke("DestroyBullet", bulletImpact.length);
+    }
+
+    private void DestroyBullet()
+    {
         Destroy(gameObject);
     }
 }

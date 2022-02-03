@@ -87,7 +87,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -194,7 +194,11 @@ MonoBehaviour:
     type: 3}
   ammoDisplay: {fileID: 0}
   shootAudioSource: {fileID: 516819972574520769}
-  shootAudioClip: {fileID: 8300000, guid: 97649808cb6f19445a25a3c7e337d7bc, type: 3}
+  shootAudioClips:
+  - {fileID: 8300000, guid: 92d35fe1c59bbd14eaee9e3d3b54cea7, type: 3}
+  - {fileID: 8300000, guid: 5207b2a445fcb144281ab5395fe95c1d, type: 3}
+  - {fileID: 8300000, guid: 1e940d15337ad1e43b0cc1b2430d7c06, type: 3}
+  - {fileID: 8300000, guid: 70c97e425596b8142b7b9163256c0868, type: 3}
   reloadAudioSource: {fileID: 8812224707027365346}
   reloadAudioClip: {fileID: 8300000, guid: 97f64d1d63d54984d8e11684a35983d2, type: 3}
   bullet: {fileID: 5373343560115861419, guid: d9618d76e11d5e34795a05962a1a4df1, type: 3}
@@ -326,7 +330,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 97649808cb6f19445a25a3c7e337d7bc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 922d7ebce6148754fa6e21f4079be780, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -336,7 +340,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -587,8 +591,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 7953525119326393306}
   m_MouseLook:
-    m_XSensitivity: 0.45
-    m_YSensitivity: 0.45
     m_ClampVerticalRotation: 1
     m_MinimumX: -90
     m_MaximumX: 90

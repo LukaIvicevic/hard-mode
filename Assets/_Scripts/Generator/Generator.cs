@@ -14,6 +14,12 @@ public class Generator : MonoBehaviour
     [SerializeField]
     private GeneratorEngine engine2;
 
+    [SerializeField]
+    private AudioClip groundImpact;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
     [Header("Fall")]
     [SerializeField]
     private float fallDuration = 2f;
@@ -95,5 +101,10 @@ public class Generator : MonoBehaviour
     {
         healthbar.transform.DOMoveX(targetHealthbarX, 1).SetEase(Ease.OutExpo);
         GameManager.Instance.CameraShake(0.4f);
+
+        if (audioSource)
+        {
+            SoundManager.Instance.PlayOneShot(audioSource, groundImpact);
+        }
     }
 }

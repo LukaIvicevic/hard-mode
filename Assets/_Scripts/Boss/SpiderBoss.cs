@@ -54,6 +54,12 @@ public class SpiderBoss : Enemy
     [SerializeField]
     private GameObject shootParticleSystem;
 
+    [SerializeField]
+    private AudioClip groundImpact;
+
+    [SerializeField]
+    private AudioSource impactSource;
+
 
 
     private SpiderState turretState;
@@ -114,6 +120,12 @@ public class SpiderBoss : Enemy
 
     public void IntroFinished()
     {
+        // Play ground impact
+        if (impactSource)
+        {
+            SoundManager.Instance.PlayOneShot(impactSource, groundImpact);
+        }
+
         // Start tracking
         ChangeState(SpiderState.Tracking);
 

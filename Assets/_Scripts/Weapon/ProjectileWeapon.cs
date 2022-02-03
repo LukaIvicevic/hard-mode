@@ -18,7 +18,7 @@ public class ProjectileWeapon : MonoBehaviour
     [SerializeField]
     private AudioSource shootAudioSource;
     [SerializeField]
-    private AudioClip shootAudioClip;
+    private AudioClip[] shootAudioClips;
     [SerializeField]
     private AudioSource reloadAudioSource;
     [SerializeField]
@@ -155,7 +155,8 @@ public class ProjectileWeapon : MonoBehaviour
         // Play gun shot sound
         if (shootAudioSource != null)
         {
-            SoundManager.Instance.PlayOneShot(shootAudioSource, shootAudioClip);
+            var r = Random.Range(0, shootAudioClips.Length);
+            SoundManager.Instance.PlayOneShot(shootAudioSource, shootAudioClips[r]);
         }
 
         bulletsLeft--;
