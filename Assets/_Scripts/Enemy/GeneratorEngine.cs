@@ -19,6 +19,12 @@ public class GeneratorEngine : Enemy
     [SerializeField]
     private GameObject sphere;
 
+    [SerializeField]
+    private AudioClip audioClip;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
     private float health;
     private TweenerCore<Vector3, Vector3, VectorOptions> tween;
     private Color baseColor;
@@ -46,6 +52,11 @@ public class GeneratorEngine : Enemy
         health -= damage;
 
         HitEffect();
+
+        if (audioSource)
+        {
+            SoundManager.Instance.PlayOneShot(audioSource, audioClip);
+        }
 
         if (isDestroyed)
         {
