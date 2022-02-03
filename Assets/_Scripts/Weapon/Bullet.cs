@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
             SoundManager.Instance.PlayOneShot(audioSource, bulletImpact);
         }
 
-        // gameObject.SetActive(false);
+        GetComponentInChildren<MeshRenderer>().enabled = false;
         Invoke("DestroyBullet", bulletImpact.length);
     }
 

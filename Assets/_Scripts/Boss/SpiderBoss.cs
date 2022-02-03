@@ -60,6 +60,12 @@ public class SpiderBoss : Enemy
     [SerializeField]
     private AudioSource impactSource;
 
+    [SerializeField]
+    private AudioClip tankShot;
+
+    [SerializeField]
+    private AudioSource tankShotSource;
+
 
 
     private SpiderState turretState;
@@ -253,6 +259,12 @@ public class SpiderBoss : Enemy
 
         // Spawn particle system
         Instantiate(shootParticleSystem, shellSpawner.position, Quaternion.identity);
+
+        // Play audio
+        if (tankShotSource != null)
+        {
+            SoundManager.Instance.PlayOneShot(tankShotSource, tankShot);
+        }
 
         ChangeState(SpiderState.Tracking);
     }

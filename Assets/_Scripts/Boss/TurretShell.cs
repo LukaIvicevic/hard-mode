@@ -17,6 +17,12 @@ public class TurretShell : MonoBehaviour
     [SerializeField]
     private int ignoreCollisionLayer = 3;
 
+    [SerializeField]
+    private AudioClip shellExplosion;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
     void Update()
     {
             transform.position += transform.forward * speed * Time.deltaTime;
@@ -55,7 +61,17 @@ public class TurretShell : MonoBehaviour
             }
         }
 
-        // Destroy shell
+        if (audioSource != null)
+        {
+            SoundManager.Instance.PlayOneShot(audioSource, shellExplosion);
+        }
+
+        GetComponentInChildren<MeshRenderer>().enabled = false;
+        Invoke("DestroyShell", shellExplosion.length);
+    }
+
+    private void DestroyShell()
+    {
         Destroy(gameObject);
     }
 }
