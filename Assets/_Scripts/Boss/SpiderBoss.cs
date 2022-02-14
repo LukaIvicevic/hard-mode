@@ -258,13 +258,8 @@ public class SpiderBoss : Enemy
         turretShellInstance.transform.rotation = shellSpawner.rotation;
 
         // Spawn particle system
-        Instantiate(shootParticleSystem, shellSpawner.position, Quaternion.identity);
-
-        // Play audio
-        if (tankShotSource != null)
-        {
-            SoundManager.Instance.PlayOneShot(tankShotSource, tankShot);
-        }
+        var explosion = Instantiate(shootParticleSystem, shellSpawner.position, Quaternion.identity);
+        explosion.GetComponent<PlayOneShot>().AudioClip = tankShot;
 
         ChangeState(SpiderState.Tracking);
     }

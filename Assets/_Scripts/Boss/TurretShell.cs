@@ -20,9 +20,6 @@ public class TurretShell : MonoBehaviour
     [SerializeField]
     private AudioClip shellExplosion;
 
-    [SerializeField]
-    private AudioSource audioSource;
-
     void Update()
     {
             transform.position += transform.forward * speed * Time.deltaTime;
@@ -46,6 +43,7 @@ public class TurretShell : MonoBehaviour
     {
         // Play explosion
         var explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
+        explosion.GetComponent<PlayOneShot>().AudioClip = shellExplosion;
         explosion.GetComponent<ParticleSystem>()?.Play();
 
         // Camera shake
