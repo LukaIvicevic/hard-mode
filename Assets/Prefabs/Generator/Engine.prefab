@@ -147,7 +147,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -164,13 +164,22 @@ AudioSource:
       inWeight: 0.33333334
       outWeight: 0.030357143
     - serializedVersion: 3
-      time: 0.99823
-      value: 0
-      inSlope: -0.6013119
-      outSlope: -0.6013119
+      time: 0.2209537
+      value: 0.21223536
+      inSlope: -1.2746171
+      outSlope: -1.2746171
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.07872646
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99823
+      value: 0
+      inSlope: -0.05999605
+      outSlope: -0.05999605
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08767089
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2

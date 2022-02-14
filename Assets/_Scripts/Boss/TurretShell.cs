@@ -61,17 +61,6 @@ public class TurretShell : MonoBehaviour
             }
         }
 
-        if (audioSource != null)
-        {
-            SoundManager.Instance.PlayOneShot(audioSource, shellExplosion);
-        }
-
-        GetComponentInChildren<MeshRenderer>().enabled = false;
-        Invoke("DestroyShell", shellExplosion.length);
-    }
-
-    private void DestroyShell()
-    {
         Destroy(gameObject);
     }
 }

@@ -41,6 +41,7 @@ public class Bullet : MonoBehaviour
         }
 
         GetComponentInChildren<MeshRenderer>().enabled = false;
+        GetComponentInChildren<BoxCollider>().enabled = false;
         Invoke("DestroyBullet", bulletImpact.length);
     }
 
