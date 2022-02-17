@@ -21,6 +21,14 @@ public class SoundManager : SingletonPersistent<SoundManager>
         audioSource.PlayOneShot(audioClip);
     }
 
+    public void PlayLoop(AudioSource audioSource, AudioClip audioClip)
+    {
+        audioSource.volume = SettingsManager.Instance.Volume;
+        audioSource.clip = audioClip;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
     public void PlayNoOverlap(AudioSource audioSource, AudioClip audioClip)
     {
         audioSource.volume = SettingsManager.Instance.Volume;

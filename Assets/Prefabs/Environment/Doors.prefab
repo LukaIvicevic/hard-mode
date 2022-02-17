@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8010305412997543437}
   - component: {fileID: 8010305412997543439}
   - component: {fileID: 8010305412997543436}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520341fc93b2ab24fb1b3c0098962f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  close: 0
   leftDoor: {fileID: 8010305414068880488}
   rightDoor: {fileID: 8010305414277353021}
 --- !u!1 &8010305414068880491
@@ -73,7 +74,7 @@ GameObject:
   - component: {fileID: 8010305414068880495}
   - component: {fileID: 8010305414068880494}
   - component: {fileID: 8010305414068880489}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +169,7 @@ GameObject:
   - component: {fileID: 8010305414277353008}
   - component: {fileID: 8010305414277353011}
   - component: {fileID: 8010305414277353010}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}

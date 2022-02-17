@@ -63,9 +63,6 @@ public class SpiderBoss : Enemy
     [SerializeField]
     private AudioClip tankShot;
 
-    [SerializeField]
-    private AudioSource tankShotSource;
-
 
 
     private SpiderState turretState;

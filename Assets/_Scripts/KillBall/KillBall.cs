@@ -6,6 +6,10 @@ using UnityEngine;
 public class KillBall : MonoBehaviour
 {
     [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip audioClip;
+    [SerializeField]
     private float aimDuration = 1;
     [SerializeField]
     private float speed = 10;
@@ -33,6 +37,7 @@ public class KillBall : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         lineRenderer = GetComponent<LineRenderer>();
         castStart = GameManager.Instance.GetKillBallCastStart();
+        SoundManager.Instance.PlayLoop(audioSource, audioClip);
         IntroAnimation();
     }
 
