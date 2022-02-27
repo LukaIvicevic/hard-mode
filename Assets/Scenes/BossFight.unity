@@ -47827,6 +47827,7 @@ MonoBehaviour:
   playerCamera: {fileID: 252951722}
   weaponCamera: {fileID: 1386392300}
   killBallCastStart: {fileID: 1719104054}
+  killFloor: {fileID: 7182733190131805172}
 --- !u!4 &1681335340
 Transform:
   m_ObjectHideFlags: 0
@@ -62113,6 +62114,18 @@ PrefabInstance:
       objectReference: {fileID: 374120222}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cb6fced01ebcb94999ebcca9b5d739c, type: 3}
+--- !u!114 &7182733190131805172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1753096219887193997, guid: 4cb6fced01ebcb94999ebcca9b5d739c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7182733190131805171}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1876e0c327858cd449eeeaffe838bbf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8010305413991510026
 PrefabInstance:
   m_ObjectHideFlags: 0

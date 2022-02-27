@@ -25,6 +25,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private Transform killBallCastStart;
 
+    [SerializeField]
+    private KillFloor killFloor;
+
     private bool started = false;
 
     private void Start()
@@ -42,6 +45,7 @@ public class GameManager : Singleton<GameManager>
         UnitManager.Instance.SpawnGenerators();
         UnitManager.Instance.SpawnBoss();
         SoundManager.Instance.PlayBossMusic();
+        killFloor.StartFloor();
         started = true;
     }
 

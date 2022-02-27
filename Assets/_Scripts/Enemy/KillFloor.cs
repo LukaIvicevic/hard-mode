@@ -32,9 +32,12 @@ public class KillFloor : MonoBehaviour
 
     private void Start()
     {
-        AdjustDifficulty();
         SetDefaultMaterials();
+    }
 
+    public void StartFloor()
+    {
+        AdjustDifficulty();
         InvokeRepeating("Detonate", timeBetweenDetonation, timeBetweenDetonation);
     }
 
