@@ -20258,17 +20258,9 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 359064151}
   m_IsSelectable: 1
-  m_SelectedFaces: 04000000
-  m_SelectedEdges:
-  - a: 16
-    b: 17
-  - a: 18
-    b: 16
-  - a: 17
-    b: 19
-  - a: 19
-    b: 18
-  m_SelectedVertices: 10000000110000001200000013000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!43 &765422386
 Mesh:
   m_ObjectHideFlags: 0
@@ -27376,6 +27368,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GeneratorHealthbar1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910627080410347754, guid: 8324f96fb14d8f5458bdcf9c5b57bc9c,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.10588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910627080410347754, guid: 8324f96fb14d8f5458bdcf9c5b57bc9c,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.10588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910627080410347754, guid: 8324f96fb14d8f5458bdcf9c5b57bc9c,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.10588236
       objectReference: {fileID: 0}
     - target: {fileID: 6910627080410347755, guid: 8324f96fb14d8f5458bdcf9c5b57bc9c,
         type: 3}
@@ -56802,12 +56809,12 @@ PrefabInstance:
     - target: {fileID: 6992601965682325634, guid: 629ffe92c5aa4fa4898a8216bd87a1e3,
         type: 3}
       propertyPath: m_Size.y
-      value: 10.273874
+      value: 31.747406
       objectReference: {fileID: 0}
     - target: {fileID: 6992601965682325634, guid: 629ffe92c5aa4fa4898a8216bd87a1e3,
         type: 3}
       propertyPath: m_Size.z
-      value: 2.7957458
+      value: 5.8025455
       objectReference: {fileID: 0}
     - target: {fileID: 6992601965682325634, guid: 629ffe92c5aa4fa4898a8216bd87a1e3,
         type: 3}
@@ -56817,12 +56824,12 @@ PrefabInstance:
     - target: {fileID: 6992601965682325634, guid: 629ffe92c5aa4fa4898a8216bd87a1e3,
         type: 3}
       propertyPath: m_Center.y
-      value: 3.7125845
+      value: -4.948576
       objectReference: {fileID: 0}
     - target: {fileID: 6992601965682325634, guid: 629ffe92c5aa4fa4898a8216bd87a1e3,
         type: 3}
       propertyPath: m_Center.z
-      value: -17.899448
+      value: -16.39605
       objectReference: {fileID: 0}
     - target: {fileID: 6992601965682325635, guid: 629ffe92c5aa4fa4898a8216bd87a1e3,
         type: 3}

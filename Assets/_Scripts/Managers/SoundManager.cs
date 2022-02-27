@@ -16,6 +16,8 @@ public class SoundManager : SingletonPersistent<SoundManager>
     [SerializeField]
     private AudioSource musicSource;
 
+    private bool isMusicPlaying = false;
+
     private void Start()
     {
         PlayAmbientMusic();
@@ -50,16 +52,19 @@ public class SoundManager : SingletonPersistent<SoundManager>
 
     public void PlayBossMusic()
     {
-        musicSource = GetComponent<AudioSource>();
-        if (musicSource == null)
+        if (!isMusicPlaying)
         {
-            Logger.Instance.LogWarning("MusicSource not set on SoundManager");
-            return;
+            musicSource = GetComponent<AudioSource>();
+            if (musicSource == null)
+            {
+                Logger.Instance.LogWarning("MusicSource not set on SoundManager");
+                return;
+            }
+            musicSource.loop = true;
+            musicSource.clip = music;
+            musicSource.volume = SettingsManager.Instance.Volume;
+            musicSource.Play();
         }
-        musicSource.loop = true;
-        musicSource.clip = music;
-        musicSource.volume = SettingsManager.Instance.Volume;
-        musicSource.Play();
     }
 
     private void PlayAmbientMusic()
