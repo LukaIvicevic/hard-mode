@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
 
         UnitManager.Instance.SpawnGenerators();
         UnitManager.Instance.SpawnBoss();
+        SoundManager.Instance.PlayBossMusic();
         started = true;
     }
 

@@ -35,11 +35,6 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(damage);
         }
 
-        if (audioSource != null)
-        {
-            SoundManager.Instance.PlayOneShot(audioSource, bulletImpact);
-        }
-
         Destroy(gameObject);
     }
 }

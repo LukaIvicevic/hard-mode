@@ -7,7 +7,14 @@ public class SoundManager : SingletonPersistent<SoundManager>
     [SerializeField]
     private AudioClip ambience;
 
-    private AudioSource globalSource;
+    [SerializeField]
+    private AudioClip music;
+
+    [SerializeField]
+    private AudioSource ambienceSource;
+
+    [SerializeField]
+    private AudioSource musicSource;
 
     private void Start()
     {
@@ -41,22 +48,37 @@ public class SoundManager : SingletonPersistent<SoundManager>
         audioSource.Play();
     }
 
-    private void PlayAmbientMusic()
+    public void PlayBossMusic()
     {
-        globalSource = GetComponent<AudioSource>();
-        if (globalSource == null)
+        musicSource = GetComponent<AudioSource>();
+        if (musicSource == null)
         {
-            Logger.Instance.LogWarning("GlobalSource not set on SoundManager");
+            Logger.Instance.LogWarning("MusicSource not set on SoundManager");
             return;
         }
-        globalSource.loop = true;
-        globalSource.clip = ambience;
-        globalSource.volume = SettingsManager.Instance.Volume;
-        globalSource.Play();
+        musicSource.loop = true;
+        musicSource.clip = music;
+        musicSource.volume = SettingsManager.Instance.Volume;
+        musicSource.Play();
+    }
+
+    private void PlayAmbientMusic()
+    {
+        ambienceSource = GetComponent<AudioSource>();
+        if (ambienceSource == null)
+        {
+            Logger.Instance.LogWarning("AmbienceSource not set on SoundManager");
+            return;
+        }
+        ambienceSource.loop = true;
+        ambienceSource.clip = ambience;
+        ambienceSource.volume = SettingsManager.Instance.Volume;
+        ambienceSource.Play();
     }
 
     private void VolumeChanged()
     {
-        globalSource.volume = SettingsManager.Instance.Volume;
+        ambienceSource.volume = SettingsManager.Instance.Volume;
+        musicSource.volume = SettingsManager.Instance.Volume;
     }
 }
