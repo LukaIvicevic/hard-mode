@@ -40,10 +40,6 @@ public class StatsManager : Singleton<StatsManager>
     {
         var difficulty = GameManager.Instance.GetDifficulty();
         var t = difficulty / 10; // Get percentage difficulty
-        print(difficulty);
-        print(t);
-        print(d1);
-        print(d10);
         return Mathf.Lerp(d1, d10, t);
     }
 
