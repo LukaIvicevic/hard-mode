@@ -42,7 +42,6 @@ public class DifficultySelectCube : MonoBehaviour
 
         UpdateMaterial();
         GameManager.Instance.OnDifficultyChanged += DifficultyChanged;
-        print("subed");
     }
 
     private void OnDestroy()
