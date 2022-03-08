@@ -21,12 +21,15 @@ public class SoundManager : SingletonPersistent<SoundManager>
     private void Start()
     {
         PlayAmbientMusic();
-        SettingsManager.Instance.onVolumeChanged += VolumeChanged;
+        SettingsManager.Instance.OnVolumeChanged += VolumeChanged;
     }
 
     private void OnDestroy()
     {
-        SettingsManager.Instance.onVolumeChanged -= VolumeChanged;
+        if (SettingsManager.Instance != null)
+        {
+            SettingsManager.Instance.OnVolumeChanged -= VolumeChanged;
+        }
     }
 
     public void PlayOneShot(AudioSource audioSource, AudioClip audioClip)

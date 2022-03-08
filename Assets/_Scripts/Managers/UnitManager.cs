@@ -81,7 +81,6 @@ public class UnitManager : Singleton<UnitManager>
 
     public void GeneratorDestroyed(int id)
     {
-        GameManager.Instance.PlayerWins();
         var numberToSpawn = StatsManager.GetNumberOfKillBallsToSpawn();
         for (int i = 0; i < numberToSpawn; i++)
         {

@@ -9,7 +9,7 @@ public class SettingsManager : SingletonPersistent<SettingsManager>
 
     public float Volume { get; private set; }
 
-    public event Action onVolumeChanged;
+    public event Action OnVolumeChanged;
 
     private readonly string sensKey = "Sensitivity";
     private readonly string volKey = "Volume";
@@ -25,7 +25,7 @@ public class SettingsManager : SingletonPersistent<SettingsManager>
     {
         Volume = value;
         PlayerPrefs.SetFloat(volKey, value);
-        onVolumeChanged?.Invoke();
+        OnVolumeChanged?.Invoke();
     }
 
     public void ChangeSensitivity(float value)
