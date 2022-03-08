@@ -22112,8 +22112,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeathMenu, Assembly-CSharp
+      - m_Target: {fileID: 1451501835}
+        m_TargetAssemblyTypeName: VictoryMenu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -47820,7 +47820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc902ee66c3f4b842b4a0913240131da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
+  IsPaused: 0
+  IsWinScreenOpen: 0
   deathMenu: {fileID: 1666795574}
   victoryMenu: {fileID: 1451501835}
   difficulty: 1
@@ -55751,8 +55752,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DeathMenu, Assembly-CSharp
+      - m_Target: {fileID: 1451501835}
+        m_TargetAssemblyTypeName: VictoryMenu, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:

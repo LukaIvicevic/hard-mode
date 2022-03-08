@@ -21,7 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.IsWinScreenOpen)
         {
             TogglePauseMenu();
         }
@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         hud.SetActive(true);
         Time.timeScale = 1;
         GameManager.Instance.LockCursor();
-        GameManager.Instance.isPaused = false;
+        GameManager.Instance.IsPaused = false;
     }
 
     public void Restart()
@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour
 
     private void TogglePauseMenu()
     {
-        if (GameManager.Instance.isPaused)
+        if (GameManager.Instance.IsPaused)
         {
             Resume();
             return;
@@ -69,6 +69,6 @@ public class PauseMenu : MonoBehaviour
         hud.SetActive(false);
         Time.timeScale = 0;
         GameManager.Instance.UnlockCursor();
-        GameManager.Instance.isPaused = true;
+        GameManager.Instance.IsPaused = true;
     }
 }

@@ -78,7 +78,7 @@ namespace Q3Movement
 
         private void Update()
         {
-            if (GameManager.Instance.isPaused)
+            if (GameManager.Instance.IsPaused)
             {
                 return;
             }

@@ -39,18 +39,14 @@ public class DifficultySelectCube : MonoBehaviour
         {
             Logger.Instance.LogWarning("SelectedMaterial not set on DifficultySelectCube");
         }
+
+        UpdateMaterial();
+        GameManager.Instance.OnDifficultyChanged += DifficultyChanged;
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if (GameManager.Instance.GetDifficulty() == difficulty && meshRenderer.material != selectedMaterial)
-        {
-            meshRenderer.material = selectedMaterial;
-        }
-        else if (!(GameManager.Instance.GetDifficulty() == difficulty) && meshRenderer.material != unselectedMaterial)
-        {
-            meshRenderer.material = unselectedMaterial;
-        }
+        GameManager.Instance.OnDifficultyChanged -= DifficultyChanged;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,5 +63,22 @@ public class DifficultySelectCube : MonoBehaviour
     private void SelectDifficulty()
     {
         GameManager.Instance.SelectDifficulty(difficulty);
+    }
+
+    private void DifficultyChanged()
+    {
+        UpdateMaterial();
+    }
+
+    private void UpdateMaterial()
+    {
+        if (GameManager.Instance.GetDifficulty() == difficulty && meshRenderer.material.name != selectedMaterial.name)
+        {
+            meshRenderer.material = selectedMaterial;
+        }
+        else if (!(GameManager.Instance.GetDifficulty() == difficulty) && meshRenderer.material.name != unselectedMaterial.name)
+        {
+            meshRenderer.material = unselectedMaterial;
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public bool isPaused = false;
+    public bool IsPaused = false;
+
+    public bool IsWinScreenOpen = false;
+
+    public event Action OnDifficultyChanged;
 
     [SerializeField]
     private DeathMenu deathMenu;
@@ -69,6 +74,7 @@ public class GameManager : Singleton<GameManager>
     {
         Logger.Instance.Log("Difficulty changed to: " + d);
         difficulty = d;
+        OnDifficultyChanged?.Invoke();
     }
 
     public float GetDifficulty()

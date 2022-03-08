@@ -62,7 +62,7 @@ public class ProjectileWeapon : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.isPaused)
+        if (GameManager.Instance.IsPaused)
         {
             return;
         }

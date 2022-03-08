@@ -21,7 +21,7 @@ public class DeathMenu : MonoBehaviour
         hud.SetActive(true);
         Time.timeScale = 1;
         GameManager.Instance.LockCursor();
-        GameManager.Instance.isPaused = false;
+        GameManager.Instance.IsPaused = false;
     }
 
     public void Restart()
@@ -41,6 +41,6 @@ public class DeathMenu : MonoBehaviour
         hud.SetActive(false);
         Time.timeScale = 0;
         GameManager.Instance.UnlockCursor();
-        GameManager.Instance.isPaused = true;
+        GameManager.Instance.IsPaused = true;
     }
 }

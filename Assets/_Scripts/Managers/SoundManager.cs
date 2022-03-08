@@ -24,6 +24,11 @@ public class SoundManager : SingletonPersistent<SoundManager>
         SettingsManager.Instance.onVolumeChanged += VolumeChanged;
     }
 
+    private void OnDestroy()
+    {
+        SettingsManager.Instance.onVolumeChanged -= VolumeChanged;
+    }
+
     public void PlayOneShot(AudioSource audioSource, AudioClip audioClip)
     {
         audioSource.volume = SettingsManager.Instance.Volume;
