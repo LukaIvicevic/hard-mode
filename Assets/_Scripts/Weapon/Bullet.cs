@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
         var enemy = other.GetComponent<Enemy>();
         if (enemy != null)
         {
+            SoundManager.Instance.PlayHitMarker();
             enemy.TakeDamage(damage);
         }
         Destroy(gameObject);

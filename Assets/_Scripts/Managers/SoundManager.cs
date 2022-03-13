@@ -11,10 +11,16 @@ public class SoundManager : SingletonPersistent<SoundManager>
     private AudioClip music;
 
     [SerializeField]
+    private AudioClip hitmarker;
+
+    [SerializeField]
     private AudioSource ambienceSource;
 
     [SerializeField]
     private AudioSource musicSource;
+
+    [SerializeField]
+    private AudioSource hitMarkerSource;
 
     private void Start()
     {
@@ -34,6 +40,12 @@ public class SoundManager : SingletonPersistent<SoundManager>
     {
         audioSource.volume = SettingsManager.Instance.Volume;
         audioSource.PlayOneShot(audioClip);
+    }
+
+    public void PlayHitMarker()
+    {
+        hitMarkerSource.volume = SettingsManager.Instance.Volume;
+        hitMarkerSource.PlayOneShot(hitmarker);
     }
 
     public void PlayLoop(AudioSource audioSource, AudioClip audioClip)
