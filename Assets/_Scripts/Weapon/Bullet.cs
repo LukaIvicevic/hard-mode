@@ -23,6 +23,12 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Special exception for the door trigger
+        if (other.name == "Doors")
+        {
+            return;
+        }
+
         var layer = other.gameObject.layer;
         if (layer == ignoreCollisionLayer)
         {
